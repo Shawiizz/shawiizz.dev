@@ -36,8 +36,8 @@ const frTranslation = {
         'home.title.animation.2': 'sur',
         'home.title.animation.3': 'mon',
         'home.title.animation.4': 'site web',
-        'home.competences.title': 'Compétences',
-        'home.competences.text': 'Grâce à ma formation en BUT Informatique à l\'IUT Lyon 1, j\'ai acquis diverses compétences, de la programmation à la gestion de projets, en passant par l\'administration de systèmes complexes.',
+        'iut.skills.title': 'Compétences',
+        'iut.skills.text': 'Grâce à ma formation en BUT Informatique à l\'IUT Lyon 1, j\'ai acquis diverses compétences, de la programmation à la gestion de projets, en passant par l\'administration de systèmes complexes.',
         'header.home': 'Accueil',
         'header.about': 'À propos',
         'header.studies': 'Études',
@@ -65,6 +65,7 @@ const frTranslation = {
         'header.cv': 'Mon CV',
         'project.12cm3.description': 'Un projet de jeu vidéo de rallye développé dans le cadre d\'un projet à l\'IUT.',
         'iut.skill': 'Compétence % %',
+        'iut.associated.project': 'Projets associés',
     }
 }
 

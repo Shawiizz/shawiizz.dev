@@ -18,8 +18,8 @@ const Skills = () => {
     return (
         <section className="pt-16">
             <div className="py-8 px-4 mx-auto max-w-screen-xl text-center lg:py-16">
-                <h1 className={`mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white`}>Compétences</h1>
-                <p className="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">Ici sont présentées les compétences acquises à l'IUT, ainsi que les projets associés réalisés au cours de mes deux premières années de BUT Informatique.</p>
+                <h1 className={`mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white`}>{strings['iut.skills.title']}</h1>
+                <p className="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-400">{strings['iut.skills.text']}</p>
             </div>
             <div className="overflow-x-auto">
                 <Tabs aria-label="Full width tabs" style={`fullWidth`}>
@@ -45,8 +45,7 @@ const Skills = () => {
                                         </div>
                                         {projects.filter(project => project.skills?.includes(skill)).length > 0 &&
                                             <div>
-                                            <h2 className='text-2xl font-bold text-gray-900 dark:text-gray-300'>Projets
-                                                associés</h2>
+                                            <h2 className='text-2xl font-bold text-gray-900 dark:text-gray-300'>{strings['iut.associated.project']}</h2>
                                             <div
                                                 className={`flex flex-col w-full flex-wrap md:flex-row md:gap-8 md:items-stretch mt-8`}>
                                                 {
