@@ -3,8 +3,8 @@ export interface Skill {
     description: string[];
 }
 
-export const skills: Skill[] = [
-    {
+export const skills: Record<string, Skill> = {
+    realizeapplications: {
         name: 'Réaliser des applications',
         description: [
             'Maîtrise des concepts de la programmation orientée objet et événementielle.',
@@ -13,7 +13,7 @@ export const skills: Skill[] = [
             'Création d\'algorithmes pour la résolution de problèmes.'
         ]
     },
-    {
+    optimiseapplications: {
         name: 'Optimiser des applications informatiques',
         description: [
             'Analyse et optimisation d\'algorithmes.',
@@ -21,7 +21,7 @@ export const skills: Skill[] = [
             'Utilisation d\'outils de profiling pour optimiser les applications.'
         ]
     },
-    {
+    administercomplexsystems: {
         name: 'Administrer des systèmes informatiques communicants complexes',
         description: [
             'Installation, configuration et gestion des systèmes d\'exploitation (Windows et Linux).',
@@ -30,7 +30,7 @@ export const skills: Skill[] = [
             'Résolution des problèmes sur un système d\'exploitation.'
         ]
     },
-    {
+    datainformationmanagement: {
         name: 'Gérer des données de l\'information',
         description: [
             'Maîtrise des langages PL/SQL.',
@@ -39,7 +39,7 @@ export const skills: Skill[] = [
             'Conception d\'API pour manipuler des données dans une base de données.'
         ]
     },
-    {
+    driveproject: {
         name: 'Conduire un projet',
         description: [
             'Identification des besoins d\'un client.',
@@ -49,7 +49,7 @@ export const skills: Skill[] = [
             'Communication avec un client et une équipe.'
         ]
     },
-    {
+    workincomputerteam: {
         name: 'Travailler dans une équipe informatique',
         description: [
             'Gestion d\'une petite équipe informatique.',
@@ -60,4 +60,5 @@ export const skills: Skill[] = [
             'Veille constante sur les nouveautés dans le domaine de l\'informatique.'
         ]
     }
-]
+
+}

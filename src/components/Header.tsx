@@ -48,15 +48,15 @@ const Header = () => {
                 <Navbar.Toggle onClick={toggleNavbar} />
             </div>
             <Navbar.Collapse hidden={!isNavbarOpen}>
-                <Navbar.Link href='#' active onClick={closeNavBar}>
+                <Navbar.Link href='/' active onClick={closeNavBar}>
                     {strings['header.home']}
                 </Navbar.Link>
-                <Navbar.Link href='#myself' onClick={closeNavBar}>{strings['header.about']}</Navbar.Link>
-                <Navbar.Link href='#studies' onClick={closeNavBar}>{strings['header.studies']}</Navbar.Link>
-                <Navbar.Link href='#projects' onClick={closeNavBar}>{strings['header.projects']}</Navbar.Link>
-                <Navbar.Link href='#technologies' onClick={closeNavBar}>{strings['header.technologies']}</Navbar.Link>
-                <Navbar.Link href='#skills' onClick={closeNavBar}>{strings['header.skills']}</Navbar.Link>
-                <Navbar.Link href='#contact' onClick={closeNavBar}>{strings['header.contact']}</Navbar.Link>
+                <Navbar.Link href='/#myself' onClick={closeNavBar}>{strings['header.about']}</Navbar.Link>
+                <Navbar.Link href='/#studies' onClick={closeNavBar}>{strings['header.studies']}</Navbar.Link>
+                <Navbar.Link href='/#projects' onClick={closeNavBar}>{strings['header.projects']}</Navbar.Link>
+                <Navbar.Link href='/#technologies' onClick={closeNavBar}>{strings['header.technologies']}</Navbar.Link>
+                <Navbar.Link href='/iut' onClick={closeNavBar}>{strings['header.skills']}</Navbar.Link>
+                <Navbar.Link href='/#contact' onClick={closeNavBar}>{strings['header.contact']}</Navbar.Link>
                 <CVButton strings={strings} className={`md:hidden max-w-[8rem] mt-5`} />
             </Navbar.Collapse>
         </Navbar>

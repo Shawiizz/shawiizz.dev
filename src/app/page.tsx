@@ -8,8 +8,6 @@ import schoolImage from '../../public/school.png'
 import { projectsPerCategory } from '@/util/data/Projects'
 import Link from 'next/link'
 import React from 'react'
-import { useSelector } from 'react-redux'
-import { selectTheme } from '@/features/theme/ThemeSlice'
 import { skills } from '@/util/data/Skills'
 import ProjectView from '@/components/home/ProjectView'
 import SkillAccordion from '@/components/home/SkillAccordion'
@@ -21,7 +19,6 @@ import { getLocaleStringAsArgs } from '@/util/LocaleHelper'
 import Technologies from '@/components/home/Technologies'
 
 export default function Home() {
-    const mode = useSelector(selectTheme)
     const strings = useAppSelector(selectTranslations)
 
     return (
@@ -89,15 +86,6 @@ export default function Home() {
                         className='fill-[#fff8f3]'></path>
                 </svg>
             </div>
-            <section className={`flex justify-evenly items-center md:w-full w-[80%] md:pt-20 pb-20`} id={`skills`}>
-                <div className={`flex flex-col justify-center items-center`}>
-                    <h2 className={`text-[3.8em] md:text-[4.5em] ${passionOne.className} skillsGradient font-semibold`}>{strings['home.competences.title']}</h2>
-                    <p className={`pt-5 tracking-[.054em] text-gray-800 dark:text-white font-semibold text-[1.3rem] md:text-[1.5rem] leading-[1.2em] text-center max-w-screen-md`}>{strings['home.competences.text']}</p>
-                    <div className={`flex flex-row flex-wrap gap-10 justify-center mt-10 ml-5 mr-5`}>
-                        <SkillAccordion />
-                    </div>
-                </div>
-            </section>
             <section
                 className={`flex text-center justify-around items-center ml-10 mr-10 md:pt-20 md:w-full w-80%`}
                 id={`contact`}>

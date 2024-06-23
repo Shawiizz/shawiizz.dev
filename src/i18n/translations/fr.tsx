@@ -42,7 +42,7 @@ const frTranslation = {
         'header.about': 'À propos',
         'header.studies': 'Études',
         'header.projects': 'Projets',
-        'header.skills': 'Compétences',
+        'header.skills': 'Compétences IUT',
         'header.contact': 'Contact',
         'header.technologies': 'Technologies',
         'home.level': 'Niveau : ',
@@ -64,6 +64,7 @@ const frTranslation = {
         'metadata.description': 'Site web portfolio de Maël Feri, étudiant en informatique. Découvrez mes projets, mes compétences et comment me contacter.',
         'header.cv': 'Mon CV',
         'project.12cm3.description': 'Un projet de jeu vidéo de rallye développé dans le cadre d\'un projet à l\'IUT.',
+        'iut.skill': 'Compétence % %',
     }
 }
 

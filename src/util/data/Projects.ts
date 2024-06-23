@@ -1,15 +1,16 @@
 import githubImage from '../../../public/github.png'
-import plumeoImage from '../../../public/plumeo.png'
 import { StaticImport } from 'next/dist/shared/lib/get-img-props'
 import { Technologies, Technology } from '@/util/data/Technologies'
 import { Person, persons } from '@/util/data/Person'
+import { Skill, skills } from '@/util/data/Skills'
 
 export interface Project {
     name: string;
     description: string;
     link?: { href: string; image: StaticImport };
     technologies?: Technology[],
-    persons?: Person[]
+    persons?: Person[],
+    skills?: Skill[]
 }
 
 export interface Projects {
@@ -80,31 +81,36 @@ export const projectsPerCategory: Projects = {
             name: '12cm3',
             description: 'project.12cm3.description',
             technologies: [Technologies.php, Technologies.java, Technologies.git],
-            persons: [persons.elouanrival, persons.rayantail, persons.lomebordes]
+            persons: [persons.elouanrival, persons.rayantail, persons.lomebordes],
+            skills: [skills.realizeapplications, skills.driveproject, skills.datainformationmanagement, skills.workincomputerteam]
         },
         {
             name: 'Pathfinder',
             description: 'project.pathfinder.description',
             technologies: [Technologies.java, Technologies.git],
-            persons: [persons.mylanrobinet]
+            persons: [persons.mylanrobinet],
+            skills: [skills.realizeapplications, skills.optimiseapplications, skills.workincomputerteam]
         },
         {
             name: 'Annuaire',
             description: 'project.annuaire.description',
             technologies: [Technologies.c, Technologies.git],
-            persons: [persons.elouanrival, persons.rayantail, persons.lomebordes]
+            persons: [persons.elouanrival, persons.rayantail, persons.lomebordes],
+            skills: [skills.realizeapplications, skills.driveproject, skills.optimiseapplications, skills.workincomputerteam]
         },
         {
             name: 'Kebab 12',
             description: 'project.kebab12.description',
             technologies: [Technologies.html, Technologies.css, Technologies.js, Technologies.git],
-            persons: [persons.martinducros]
+            persons: [persons.martinducros],
+            skills: [skills.realizeapplications, skills.workincomputerteam]
         },
         {
             name: 'TCL routes',
             description: 'project.tclroutes.description',
             technologies: [Technologies.kotlin, Technologies.java, Technologies.git],
-            persons: [persons.lucaslaiguillon]
+            persons: [persons.lucaslaiguillon],
+            skills: [skills.realizeapplications, skills.datainformationmanagement, skills.workincomputerteam]
         }
     ]
 }

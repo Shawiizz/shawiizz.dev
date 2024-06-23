@@ -44,7 +44,7 @@ const enTranslation: PartialLocaleState = {
         'header.about': 'About',
         'header.studies': 'Studies',
         'header.projects': 'Projects',
-        'header.skills': 'Skills',
+        'header.skills': 'Skills IUT',
         'header.contact': 'Contact',
         'header.technologies': 'Technologies',
         'home.level': 'Level: ',
@@ -65,6 +65,7 @@ const enTranslation: PartialLocaleState = {
         'metadata.title': 'Maël Feri - Portfolio',
         'metadata.description': 'Maël Feri\'s portfolio website, computer science student. Discover my projects, my skills and how to contact me.',
         'header.cv': 'My CV',
+        'iut.skill': 'Skill % %',
     }
 }
 
