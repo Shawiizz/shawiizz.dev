@@ -8,9 +8,9 @@ import { flowbiteTheme } from '@/util/FlowbiteTheme'
 
 export default function SkillAccordion() {
     return (
-        <Accordion key={Random.string(12)} theme={flowbiteTheme.accordion}>
+        <Accordion key={Random.string(12)} theme={flowbiteTheme.accordion} collapseAll>
             {
-                skills.map((skill, index) => <Accordion.Panel key={index}>
+                skills.map((skill, index) => <Accordion.Panel key={index} defaultChecked={false}>
                     <Accordion.Title>{skill.name}</Accordion.Title>
                     <Accordion.Content>
                         <ul className={`list-disc ml-3 transition-opacity duration-500 ease-in-out`}>

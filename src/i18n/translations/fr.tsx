@@ -23,6 +23,7 @@ const frTranslation = {
         'project.plumeo.description': 'Pluméo est une application web de messagerie sécurisée et instantanée, dont le développement a duré 2 ans.',
         'project.pufferpanel.description': 'Un projet open source pour communiquer avec une installation self-hosted de PufferPanel.',
         'project.tomuss.description': 'Un autre petit projet open source pour communiquer avec Tomuss (Lyon 1) et obtenir ses notes.',
+        'project.mohistweb.title': 'Site web de MohistMC',
         'project.mohistweb.description': 'Nouveau site web de MohistMC fait avec Next.js.',
         'project.collaborators': 'Collaborateurs',
         'project.pathfinder.description': 'Un projet de calcul de graphes pour trouver le chemin le plus court sur un nuage de points, dans le cadre d\'un projet à l\'IUT.',

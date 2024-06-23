@@ -7,7 +7,7 @@ import { Person, persons } from '@/util/data/Person'
 export interface Project {
     name: string;
     description: string;
-    link: { href: string; image: StaticImport };
+    link?: { href: string; image: StaticImport };
     technologies?: Technology[],
     persons?: Person[]
 }
@@ -56,7 +56,7 @@ export const projectsPerCategory: Projects = {
             technologies: [Technologies.ts, Technologies.node, Technologies.git]
         },
         {
-            name: 'MohistMC\'s website',
+            name: 'project.mohistweb.title',
             description: 'project.mohistweb.description',
             link: { href: 'https://github.com/MohistMC/website', image: githubImage },
             technologies: [Technologies.ts, Technologies.node, Technologies.next, Technologies.react, Technologies.tailwind, Technologies.cloudflare, Technologies.git]
@@ -73,42 +73,36 @@ export const projectsPerCategory: Projects = {
         {
             name: 'Pluméo',
             description: 'project.plumeo.description',
-            link: { href: 'https://vrock691.web.app', image: plumeoImage },
             technologies: [Technologies.js, Technologies.expressjs, Technologies.node, Technologies.ts, Technologies.react, Technologies.next, Technologies.cloudflare, Technologies.git],
             persons: [persons.vrock691]
         },
         {
             name: '12cm3',
             description: 'project.12cm3.description',
-            link: { href: '#', image: githubImage },
             technologies: [Technologies.php, Technologies.java, Technologies.git],
             persons: [persons.elouanrival, persons.rayantail, persons.lomebordes]
         },
         {
             name: 'Pathfinder',
             description: 'project.pathfinder.description',
-            link: { href: '#', image: githubImage },
             technologies: [Technologies.java, Technologies.git],
             persons: [persons.mylanrobinet]
         },
         {
             name: 'Annuaire',
             description: 'project.annuaire.description',
-            link: { href: '#', image: githubImage },
             technologies: [Technologies.c, Technologies.git],
             persons: [persons.elouanrival, persons.rayantail, persons.lomebordes]
         },
         {
             name: 'Kebab 12',
             description: 'project.kebab12.description',
-            link: { href: '#', image: githubImage },
             technologies: [Technologies.html, Technologies.css, Technologies.js, Technologies.git],
             persons: [persons.martinducros]
         },
         {
             name: 'TCL routes',
             description: 'project.tclroutes.description',
-            link: { href: '#', image: githubImage },
             technologies: [Technologies.kotlin, Technologies.java, Technologies.git],
             persons: [persons.lucaslaiguillon]
         }

@@ -7,7 +7,7 @@ export type Person = {
 export const persons: Record<string, Person> = {
     vrock691: {
         name: 'Vrock691',
-        link: 'https://vrock691.web.app',
+        link: 'https://vm.vld-group.com/',
     },
     shawiizz: {
         name: 'Shawiizz',
@@ -15,11 +15,11 @@ export const persons: Record<string, Person> = {
     },
     elouanrival: {
         name: 'Elouan Rival',
-        link: '#',
+        link: 'https://winluy.github.io/portfolio',
     },
     rayantail: {
         name: 'Rayan Tail',
-        link: '#',
+        link: 'https://fdouze.fr',
     },
     lomebordes: {
         name: 'Lomé Bordes',
@@ -27,7 +27,7 @@ export const persons: Record<string, Person> = {
     },
     mgazul: {
         name: 'Mgazul',
-        link: '#',
+        link: 'https://github.com/Mgazul',
     },
     mylanrobinet: {
         name: 'Mylan Robinet',
