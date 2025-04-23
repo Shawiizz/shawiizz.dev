@@ -7,6 +7,9 @@ on:
     branches-ignore:
       - '**' # Ignore pushes to branches
 
+env:
+  SUBMODULE_TOKEN_PRESENT: ${{ secrets.SUBMODULE_REPOSITORY_TOKEN != '' }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -32,7 +35,7 @@ jobs:
       - name: Install docker-decompose
         run: npm i -g shawiizz-decomposerize
 
-      - name: Build and export Docker images
+      - name: Build and export Docker images (${{ steps.vars.outputs.env }})
         run: |
           echo "Using env file: .env.${{ steps.vars.outputs.env }}"
           set -a
@@ -73,11 +76,18 @@ jobs:
     name: Deploy with Ansible
     needs: build
     steps:
-      - name: Checkout code
+      - name: Checkout code with token
+        if: env.SUBMODULE_TOKEN_PRESENT == 'true'
         uses: actions/checkout@v4
         with:
           submodules: recursive
           token: ${{ secrets.SUBMODULE_REPOSITORY_TOKEN }}
+
+      - name: Checkout code without token
+        if: env.SUBMODULE_TOKEN_PRESENT != 'true'
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
 
       - name: Update submodules
         run: |
@@ -106,16 +116,17 @@ jobs:
           echo "tag=$TAG" >> $GITHUB_OUTPUT
           echo "SSH_KEY_SECRET_NAME=$SSH_SECRET_NAME" >> $GITHUB_ENV
 
-      - name: Setup SSH Key & Run Ansible
+      - name: Setup SSH Key & Run Ansible (${{ steps.vars.outputs.env }})
         run: |
           # Load env variables
           while read -r line; do
             [[ "$line" =~ ^[A-Za-z_][A-Za-z0-9_]*= ]] && export "$line"
           done < .env.${{ steps.vars.outputs.env }}
 
-          # Inject secrets into env
+          # Inject secrets into env (including SSH keys)
           echo '${{ toJSON(secrets) }}' > secrets.json
-          for secret in $(echo "$USE_SECRETS" | tr ',' '\n' | xargs); do
+
+          for secret in $(echo "$USE_SECRETS,$DEPLOY_PRIVATE_SSH_KEYS" | tr ',' '\n' | xargs); do
             value=$(jq -r --arg key "$secret" '.[$key] // empty' secrets.json)
             [ -n "$value" ] && export "$secret=$value"
           done
