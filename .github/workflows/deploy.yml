@@ -41,6 +41,7 @@ jobs:
           while read -r line; do
           [[ "$line" =~ ^[A-Za-z_][A-Za-z0-9_]*= ]] && export "$line"
           done < deployment/env/.env.${{ steps.vars.outputs.env }}
+          export ENV=${{ steps.vars.outputs.env }}
           export VERSION=${{ steps.vars.outputs.tag }}
 
           cd deployment/docker
@@ -131,6 +132,7 @@ jobs:
             [ -n "$value" ] && export "$secret=$value"
           done
 
+          export ENV=${{ steps.vars.outputs.env }}
           export VERSION=${{ steps.vars.outputs.tag }}
 
           # SSH Setup
