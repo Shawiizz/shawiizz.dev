@@ -10,11 +10,11 @@ on:
 jobs:
   build:
     if: github.ref_type == 'branch'
-    uses: Shawiizz/devops/.github/workflows/build.yml@main
+    uses: Shawiizz/devops/.github/workflows/build.yml@1.0.14
 
   deploy:
     if: github.ref_type == 'tag'
-    uses: Shawiizz/devops/.github/workflows/deploy.yml@main
+    uses: Shawiizz/devops/.github/workflows/deploy.yml@1.0.14
     with:
       tag: ${{ github.ref_name }}
     secrets: inherit
