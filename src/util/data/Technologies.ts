@@ -1,7 +1,7 @@
-import { HiCode, HiDesktopComputer } from 'react-icons/hi'
-import { IoIosSettings } from 'react-icons/io'
-import { FaDatabase } from 'react-icons/fa'
-import { IoLibrary } from 'react-icons/io5'
+import {HiCode, HiDesktopComputer} from 'react-icons/hi'
+import {IoIosSettings} from 'react-icons/io'
+import {FaDatabase} from 'react-icons/fa'
+import {IoLibrary} from 'react-icons/io5'
 import androidstudiodark from '../../../public/skill-icon/AndroidStudio-Dark.svg'
 import androidstudiowhite from '../../../public/skill-icon/AndroidStudio-Light.svg'
 import arduino from '../../../public/skill-icon/Arduino.svg'
@@ -23,6 +23,8 @@ import flutterlight from '../../../public/skill-icon/Flutter-Light.svg'
 import git from '../../../public/skill-icon/Git.svg'
 import githubdark from '../../../public/skill-icon/Github-Dark.svg'
 import githublight from '../../../public/skill-icon/Github-Light.svg'
+import gitlabdark from '../../../public/skill-icon/GitLab-Dark.svg'
+import gitlablight from '../../../public/skill-icon/GitLab-Light.svg'
 import gradledark from '../../../public/skill-icon/Gradle-Dark.svg'
 import gradlelight from '../../../public/skill-icon/Gradle-Light.svg'
 import html from '../../../public/skill-icon/HTML.svg'
@@ -64,12 +66,19 @@ import vuedark from '../../../public/skill-icon/VueJS-Dark.svg'
 import vuelight from '../../../public/skill-icon/VueJS-Light.svg'
 import kotlindark from '../../../public/skill-icon/Kotlin-Dark.svg'
 import kotlinwhite from '../../../public/skill-icon/Kotlin-Light.svg'
-import { IconType } from 'react-icons'
-import { StaticImport } from 'next/dist/shared/lib/get-img-props'
-import { HiAcademicCap, HiCpuChip } from 'react-icons/hi2'
+import ansible from '../../../public/skill-icon/Ansible.svg'
+import dotnet from '../../../public/skill-icon/DotNet.svg'
+import docker from '../../../public/skill-icon/Docker.svg'
+import csharp from '../../../public/skill-icon/CS.svg'
+import angulardark from '../../../public/skill-icon/Angular-Dark.svg'
+import angularlight from '../../../public/skill-icon/Angular-Light.svg'
+import {IconType} from 'react-icons'
+import {StaticImport} from 'next/dist/shared/lib/get-img-props'
+import {HiAcademicCap, HiCpuChip} from 'react-icons/hi2'
+import {CgWebsite} from "react-icons/cg";
 
 export interface TechnologyType {
-    displayName: 'tech.type.language' | 'tech.type.framework' | 'tech.type.tool' | 'tech.type.database' | 'tech.type.software' | 'tech.type.hardware' | 'tech.type.other',
+    displayName: 'tech.type.language' | 'tech.type.framework' | 'tech.type.tool' | 'tech.type.database' | 'tech.type.software' | 'tech.type.hardware' | 'tech.type.other' | 'tech.type.platform',
     icon: IconType
 }
 
@@ -89,6 +98,10 @@ export const TECHNOLOGIES_TYPES: Record<string, TechnologyType> = {
     database: {
         displayName: 'tech.type.database',
         icon: FaDatabase
+    },
+    platform: {
+        displayName: 'tech.type.platform',
+        icon: CgWebsite
     },
     software: {
         displayName: 'tech.type.software',
@@ -250,7 +263,7 @@ const technologies: Record<string, Technology> = {
             dark: githubdark,
             white: githublight
         },
-        type: ['tool'],
+        type: ['platform'],
         showPriority: 'top',
         homepage: 'https://github.com'
     },
@@ -321,7 +334,7 @@ const technologies: Record<string, Technology> = {
             white: markdownlight
         },
         type: ['tool'],
-        showPriority: 'top',
+        showPriority: 'bottom',
         homepage: 'https://www.markdownguide.org/'
     },
     mongodb: {
@@ -483,6 +496,66 @@ const technologies: Record<string, Technology> = {
         type: ['language'],
         showPriority: 'bottom',
         homepage: 'https://kotlinlang.org/'
+    },
+    ansible: {
+        displayName: 'Ansible',
+        icon: {
+            dark: ansible,
+            white: ansible
+        },
+        type: ['tool'],
+        showPriority: 'top',
+        homepage: 'https://www.ansible.com/'
+    },
+    gitlab: {
+        displayName: 'GitLab',
+        icon: {
+            dark: gitlabdark,
+            white: gitlablight
+        },
+        type: ['platform'],
+        showPriority: 'middle',
+        homepage: 'https://gitlab.com'
+    },
+    csharp: {
+        displayName: 'C#',
+        icon: {
+            dark: csharp,
+            white: csharp
+        },
+        type: ['language'],
+        showPriority: 'middle',
+        homepage: 'https://learn.microsoft.com/en-us/dotnet/csharp/'
+    },
+    dotnet: {
+        displayName: '.NET',
+        icon: {
+            dark: dotnet,
+            white: dotnet
+        },
+        type: ['framework'],
+        showPriority: 'middle',
+        homepage: 'https://dotnet.microsoft.com/'
+    },
+    docker: {
+        displayName: 'Docker',
+        icon: {
+            dark: docker,
+            white: docker
+        },
+        type: ['tool'],
+        showPriority: 'top',
+        homepage: 'https://www.docker.com/'
+    },
+    angular: {
+        displayName: 'Angular',
+        icon: {
+            dark: angulardark,
+            white: angularlight
+        },
+        type: ['framework'],
+        showPriority: 'top',
+        homepage: 'https://angular.io/'
     }
 }
 

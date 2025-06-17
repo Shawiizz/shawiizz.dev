@@ -6,10 +6,10 @@ const frTranslation = {
         'home.section.1.title': 'Qui suis-je ?',
         'home.section.1.text': 'Salut ! Je m\'appelle Maël Feri, aussi connu sous le pseudonyme Shawiiz_z. J\'ai % % ans et je suis passionné d\'informatique et de programmation. J\'apprends à coder en mettant la théorie en pratique depuis plusieurs années. En dehors de l\'informatique, j\'adore faire du VTT, jouer au badminton, et j\'apprends aussi la guitare éléctrique.',
         'home.section.2.title': 'Mes études',
-        'home.section.2.text': 'J\'ai commencé à apprendre le code par moi-même en 2019, en me plongeant dans la programmation en Java. Au lycée, j\'ai choisi la spécialité Système d\'information et numérique de la filière STI2D pour approfondir mes connaissances en programmation et nouvelles technologies. Actuellement, je suis en deuxième année de BUT Informatique à l\'IUT Lyon 1 et je compte poursuivre dans cette voie pour travailler dans le domaine de l\'informatique.',
+        'home.section.2.text': 'J\'ai commencé à apprendre le code par moi-même en 2019, en me plongeant dans la programmation en Java. Au lycée, j\'ai choisi la spécialité Système d\'information et numérique de la filière STI2D pour approfondir mes connaissances en programmation et nouvelles technologies. Actuellement, je suis en troisième année de BUT Informatique à l\'IUT Lyon 1 et je compte poursuivre dans cette voie en école d\'ingénieurs durant les trois années à venir.',
         'home.section.contact.title': 'Contact',
         'home.section.contact.text': 'Vous pouvez me contacter via :',
-        'home.section.contact.discord': 'Discord :',
+        'home.section.contact.linkedin': 'LinkedIn :',
         'home.section.contact.mail': 'Mail :',
         'home.section.contact.github': 'J\'ai aussi un profil %GitHub%',
         'footer.description': 'Site web portfolio',
@@ -30,6 +30,7 @@ const frTranslation = {
         'project.kebab12.description': 'Site web d\'une boutique vitrine de vente de kebab, dans le cadre d\'un projet à l\'IUT.',
         'project.tclroutes.description': 'Un projet d\'application mobile pour visualiser les itinéraires des TCL de Lyon, dans le cadre d\'un projet à l\'IUT.',
         'project.annuaire.description': 'Un projet d\'annuaire en ligne de commande, dans le cadre d\'un projet à l\'IUT.',
+        'project.devopsframework.description': 'Un framework DevOps open source pour automatiser le déploiement d\'applications Docker via des pipelines CI/CD.',
         'button.language': 'Langue',
         'button.sourcecode': 'Code source',
         'home.title.animation.1': 'Bienvenue',
@@ -66,6 +67,7 @@ const frTranslation = {
         'project.12cm3.description': 'Un projet de jeu vidéo de rallye développé dans le cadre d\'un projet à l\'IUT.',
         'iut.skill': 'Compétence % %',
         'iut.associated.project': 'Projets associés',
+        'tech.type.platform': 'Plateforme',
     }
 }
 

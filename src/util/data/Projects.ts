@@ -1,8 +1,8 @@
 import githubImage from '../../../public/github.png'
-import { StaticImport } from 'next/dist/shared/lib/get-img-props'
-import { Technologies, Technology } from '@/util/data/Technologies'
-import { Person, persons } from '@/util/data/Person'
-import { Skill, skills } from '@/util/data/Skills'
+import {StaticImport} from 'next/dist/shared/lib/get-img-props'
+import {Technologies, Technology} from '@/util/data/Technologies'
+import {Person, persons} from '@/util/data/Person'
+import {Skill, skills} from '@/util/data/Skills'
 
 export interface Project {
     name: string;
@@ -21,45 +21,51 @@ export interface Projects {
 export const projectsPerCategory: Projects = {
     personal: [
         {
+            name: 'DevOps Framework',
+            description: 'project.devopsframework.description',
+            link: {href: 'https://github.com/Shawiizz/devops', image: githubImage},
+            technologies: [Technologies.ansible, Technologies.bash, Technologies.docker, Technologies.github, Technologies.gitlab]
+        },
+        {
             name: 'Github auto pull',
             description: 'project.ghpull.description',
-            link: { href: 'https://github.com/Shawiizz/github-auto-pull', image: githubImage },
+            link: {href: 'https://github.com/Shawiizz/github-auto-pull', image: githubImage},
             technologies: [Technologies.js, Technologies.git]
         },
         {
             name: 'ShaLibUpdate',
             description: 'project.autodl.description',
-            link: { href: 'https://github.com/Shawiizz/ShaLibUpdate', image: githubImage },
+            link: {href: 'https://github.com/Shawiizz/ShaLibUpdate', image: githubImage},
             technologies: [Technologies.java, Technologies.php, Technologies.git]
         },
         {
             name: 'Minecraft Assets Downloader',
             description: 'project.assetsdl.description',
-            link: { href: 'https://github.com/Shawiizz/MinecraftAssetsDownloader', image: githubImage },
+            link: {href: 'https://github.com/Shawiizz/MinecraftAssetsDownloader', image: githubImage},
             technologies: [Technologies.java, Technologies.git]
         },
         {
             name: 'LLA Menu Story',
             description: 'project.lla.description',
-            link: { href: 'https://github.com/Shawiizz/lla-menu-story', image: githubImage },
+            link: {href: 'https://github.com/Shawiizz/lla-menu-story', image: githubImage},
             technologies: [Technologies.js, Technologies.node, Technologies.git]
         },
         {
             name: 'PufferPanel API Wrapper',
             description: 'project.pufferpanel.description',
-            link: { href: 'https://github.com/Shawiizz/pufferpanel-api-wrapper', image: githubImage },
+            link: {href: 'https://github.com/Shawiizz/pufferpanel-api-wrapper', image: githubImage},
             technologies: [Technologies.ts, Technologies.node, Technologies.git]
         },
         {
             name: 'Tomuss API',
             description: 'project.tomuss.description',
-            link: { href: 'https://github.com/Shawiizz/tomuss-api', image: githubImage },
+            link: {href: 'https://github.com/Shawiizz/tomuss-api', image: githubImage},
             technologies: [Technologies.ts, Technologies.node, Technologies.git]
         },
         {
             name: 'project.mohistweb.title',
             description: 'project.mohistweb.description',
-            link: { href: 'https://github.com/MohistMC/website', image: githubImage },
+            link: {href: 'https://github.com/MohistMC/website', image: githubImage},
             technologies: [Technologies.ts, Technologies.node, Technologies.next, Technologies.react, Technologies.tailwind, Technologies.cloudflare, Technologies.git]
         }
     ],
@@ -67,7 +73,7 @@ export const projectsPerCategory: Projects = {
         {
             name: 'Mohist',
             description: 'project.mohist.description',
-            link: { href: 'https://github.com/MohistMC/Mohist', image: githubImage },
+            link: {href: 'https://github.com/MohistMC/Mohist', image: githubImage},
             technologies: [Technologies.java, Technologies.git],
             persons: [persons.mgazul]
         },

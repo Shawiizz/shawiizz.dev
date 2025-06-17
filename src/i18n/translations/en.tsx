@@ -8,10 +8,10 @@ const enTranslation: PartialLocaleState = {
         'home.section.1.title': 'Who am I?',
         'home.section.1.text': 'Hi! My name is Maël Feri, also known by the pseudonym Shawiiz_z. I am % % years old and I am passionate about computers and programming. I have been learning to code by putting theory into practice for several years. Outside of computing, I love biking, playing badminton, and I am also learning to play the electric guitar.',
         'home.section.2.title': 'My studies',
-        'home.section.2.text': 'I started learning to code on my own in 2019, diving into Java programming. In high school, I chose the Information and Digital Systems specialty in the STI2D track to deepen my knowledge of programming and new technologies. Currently, I am in my second year of a Bachelor\'s in Computer Science at IUT Lyon 1, and I plan to continue on this path to work in the field of computer science.',
+        'home.section.2.text': 'I started learning to code on my own in 2019, diving into Java programming. In high school, I chose the Information and Digital Systems specialty in the STI2D track to deepen my knowledge of programming and new technologies. Currently, I am in my third and last year of a Bachelor\'s in Computer Science at IUT Lyon 1, and I plan to continue on this path by enrolling in an engineering school for the next three years.',
         'home.section.contact.title': 'Contact',
         'home.section.contact.text': 'You can talk to me using:',
-        'home.section.contact.discord': 'Discord:',
+        'home.section.contact.linkedin': 'LinkedIn:',
         'home.section.contact.mail': 'Mail:',
         'home.section.contact.github': 'I also have a %GitHub% profile',
         'footer.description': 'Portfolio website',
@@ -31,6 +31,7 @@ const enTranslation: PartialLocaleState = {
         'project.kebab12.description': 'A kebab shop showcase website, as part of a project at the IUT.',
         'project.tclroutes.description': 'A mobile application project to visualize the routes of Lyon\'s TCL, as part of a project at the IUT.',
         'project.annuaire.description': 'A command line online directory project, as part of a project at the IUT.',
+        'project.devopsframework.description': 'An open source DevOps framework to automate the deployment of Docker applications using CI/CD pipelines.',
         'project.collaborators': 'Collaborators',
         'button.language': 'Language',
         'button.sourcecode': 'Source code',
@@ -67,6 +68,7 @@ const enTranslation: PartialLocaleState = {
         'header.cv': 'My CV',
         'iut.skill': 'Skill % %',
         'iut.associated.project': 'Associated projects',
+        'tech.type.platform': 'Platform',
     }
 }
 
