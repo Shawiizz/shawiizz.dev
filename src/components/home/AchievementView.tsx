@@ -1,26 +1,26 @@
-import { Project } from '@/util/data/Projects'
-import { ProjectCard } from '@/components/home/ProjectCard'
+import { Achievement } from '@/util/data/Achievements'
+import { AchievementCard } from '@/components/home/AchievementCard'
 import { Pagination } from 'flowbite-react'
 import React, { useEffect, useState } from 'react'
 import { useAppSelector } from '@/util/redux/Hooks'
 import { selectTranslations } from '@/features/i18n/TranslatorSlice'
 
-export interface ProjectViewProps {
-    projects: Project[]
+export interface AchievementViewProps {
+    achievements: Achievement[]
     title: string
     isModal?: boolean
 }
 
-export default function ProjectView({ projects, title, isModal = false}: ProjectViewProps) {
+export default function AchievementView({ achievements, title, isModal = false}: AchievementViewProps) {
     const strings = useAppSelector(selectTranslations)
-    const [personalPage, setPersonalPage] = useState(1)
+    const [currentPage, setCurrentPage] = useState(1)
 
-    const personalPageChange = (pageNumber: number) => {
-        setPersonalPage(pageNumber)
+    const pageChange = (pageNumber: number) => {
+        setCurrentPage(pageNumber)
     }
 
     useEffect(() => {
-        console.log('caled')
+        console.log('AchievementView loaded')
     }, [])
 
     return (
@@ -30,18 +30,18 @@ export default function ProjectView({ projects, title, isModal = false}: Project
             <div
                 className={`flex flex-col w-full flex-wrap md:flex-row md:gap-8 md:items-stretch mt-8 justify-center`}>
                 {
-                    projects.map((project, index) => {
-                        if (index >= personalPage * 4 || index < (personalPage - 1) * 4) return null
+                    achievements.map((achievement, index) => {
+                        if (index >= currentPage * 4 || index < (currentPage - 1) * 4) return null
 
                         return (
-                            <ProjectCard key={index} {...project} />
+                            <AchievementCard key={index} {...achievement} />
                         )
                     })
                 }
             </div>
-            <div className={`mb-2 mt-6 ${projects.length < 5 && 'hidden'}`}>
-                <Pagination currentPage={personalPage} totalPages={Math.ceil(projects.length / 4)}
-                            onPageChange={personalPageChange}
+            <div className={`mb-2 mt-6 ${achievements.length < 5 && 'hidden'}`}>
+                <Pagination currentPage={currentPage} totalPages={Math.ceil(achievements.length / 4)}
+                            onPageChange={pageChange}
                             previousLabel={strings['pagination.previous']}
                             nextLabel={strings['pagination.next']}
                             showIcons />

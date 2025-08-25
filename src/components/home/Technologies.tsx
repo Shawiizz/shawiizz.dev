@@ -1,126 +1,117 @@
-import { Pagination, Tabs } from 'flowbite-react'
-import { useAppSelector } from '@/util/redux/Hooks'
-import { selectTranslations } from '@/features/i18n/TranslatorSlice'
-import {
-    Technologies as technologyObject,
-    TECHNOLOGIES_TYPES,
-    Technology,
-    technologyLevels,
-    TechnologyTypeKeys
-} from '@/util/data/Technologies'
-import React, { useCallback, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { selectTheme } from '@/features/theme/ThemeSlice'
 import Image from 'next/image'
-import ProjectView from '@/components/home/ProjectView'
-import { Project, projects } from '@/util/data/Projects'
-import { ModalLayout } from '@/layout/ModalLayout'
-
-const pagination = {
-    'base': '',
-    'layout': {
-        'table': {
-            'base': 'text-sm text-gray-700 dark:text-gray-400',
-            'span': 'font-semibold text-gray-900 dark:text-white'
-        }
-    },
-    'pages': {
-        'base': 'xs:mt-0 mt-2 inline-flex items-center -space-x-px',
-        'showIcon': 'inline-flex',
-        'previous': {
-            'base': 'ml-0 rounded-l-lg border border-gray-300 bg-white py-2 px-3 leading-tight text-gray-500 enabled:hover:bg-gray-100 enabled:hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 enabled:dark:hover:bg-gray-700 enabled:dark:hover:text-white',
-            'icon': 'h-5 w-5'
-        },
-        'next': {
-            'base': 'rounded-r-lg border border-gray-300 bg-white py-2 px-3 leading-tight text-gray-500 enabled:hover:bg-gray-100 enabled:hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 enabled:dark:hover:bg-gray-700 enabled:dark:hover:text-white',
-            'icon': 'h-5 w-5'
-        },
-        'selector': {
-            'base': 'w-12 border border-gray-300 bg-white py-2 leading-tight text-gray-500 enabled:hover:bg-gray-100 enabled:hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 enabled:dark:hover:bg-gray-700 enabled:dark:hover:text-white',
-            'active': 'bg-cyan-50 text-cyan-600 hover:bg-cyan-100 hover:text-cyan-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white',
-            'disabled': 'opacity-50 cursor-normal'
-        }
-    }
-}
+import { useState } from 'react'
+import {
+    Technologies as technologyObject,
+    TECHNOLOGIES_TYPES,
+    TechnologyTypeKeys
+} from '@/util/data/Technologies'
 
 const Technologies = () => {
     const mode = useSelector(selectTheme)
-    const strings = useAppSelector(selectTranslations)
-    const [page, setPage] = useState(1)
-    const [usedInProjects, setUsedInProjects]: [Project[], Function] = useState([])
-    const projectByTech = useCallback((tech: Technology) => projects.filter(project => project.technologies?.includes(tech)) ?? [], [projects])
+    const [activeTab, setActiveTab] = useState<TechnologyTypeKeys>('language')
+    
+    // Grouper les technologies par type et par priorité
+    const groupedTechnologies = Object.values(technologyObject).reduce((acc, tech) => {
+        tech.type.forEach(type => {
+            if (!acc[type]) {
+                acc[type] = { top: [], middle: [], bottom: [] }
+            }
+            acc[type][tech.showPriority].push(tech)
+        })
+        return acc
+    }, {} as Record<TechnologyTypeKeys, { top: any[], middle: any[], bottom: any[] }>)
 
-    const pageChange = (pageNumber: number) => {
-        setPage(pageNumber)
+    const getCurrentTechnologies = () => {
+        const group = groupedTechnologies[activeTab]
+        if (!group) return []
+        return [...group.top, ...group.middle, ...group.bottom]
     }
 
-    const tabChange = () => {
-        setPage(1)
-    }
-
-    const showUsedInProjects = (tech: Technology) => {
-        setUsedInProjects(projects.filter(project => project.technologies?.includes(tech)))
-    }
-
-    const hideUsedInProjects = () => {
-        setUsedInProjects([])
-    }
+    const tabs = Object.entries(TECHNOLOGIES_TYPES).filter(([key]) => 
+        groupedTechnologies[key as TechnologyTypeKeys]
+    )
 
     return (
-        <>
-            {usedInProjects.length > 0 && <ModalLayout onClose={hideUsedInProjects}>
-                <ProjectView projects={usedInProjects} title={strings['projects.usedin']} isModal={true} />
-            </ModalLayout>}
-            <Tabs aria-label='Tabs with underline' style='underline' onActiveTabChange={tabChange}>
-                {Object.entries(TECHNOLOGIES_TYPES).map(([name, props], index) => {
-                    const technologiesByType = Object.values(technologyObject).filter(tech => tech.type.includes(name as TechnologyTypeKeys))
-
-                    return technologiesByType.length && (
-                        <Tabs.Item key={index} title={strings[props.displayName]} icon={props.icon}>
-                            <div className={`flex flex-col`}>
-                                {
-                                    technologiesByType
-                                        .sort((a, b) => technologyLevels[a.showPriority] - technologyLevels[b.showPriority])
-                                        .slice((page - 1) * 4, page * 4)
-                                        .map((tech, index) => {
-                                            return (
-                                                <div key={index}
-                                                     className='flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700'>
-                                                    <a className='flex items-center space-x-4' href={tech.homepage}
-                                                       target={`_blank`}>
-                                                        <Image src={mode === 'dark' ? tech.icon.dark : tech.icon.white}
-                                                               alt={tech.displayName}
-                                                               width={48} height={48} className='w-12 h-12' />
-                                                        <h2 className='text-lg font-semibold text-gray-800 dark:text-gray-200'>{tech.displayName}</h2>
-                                                    </a>
-                                                    <div className='flex items-center space-x-4'>
-                                                        {
-                                                            projectByTech(tech).length > 0 &&
-                                                            <button
-                                                                className='text-sm text-white text-right p-2 dark:bg-blue-900 bg-blue-600 rounded-lg'
-                                                                onClick={() => showUsedInProjects(tech)}>{strings['tech.show.related.projects']}</button>
-                                                        }
-                                                    </div>
-                                                </div>
-                                            )
-                                        })
-                                }
-                                <div
-                                    className={`mb-6 self-center mt-4 ${technologiesByType.length < 5 && 'hidden'}`}>
-                                    <Pagination currentPage={page}
-                                                totalPages={Math.ceil(technologiesByType.length / 4)}
-                                                onPageChange={pageChange}
-                                                previousLabel={strings['pagination.previous']}
-                                                nextLabel={strings['pagination.next']}
-                                                theme={pagination}
-                                                showIcons />
-                                </div>
-                            </div>
-                        </Tabs.Item>
+        <div className="w-full max-w-6xl mx-auto">
+            {/* Navigation par onglets */}
+            <div className="flex flex-wrap justify-center gap-2 mb-8">
+                {tabs.map(([key, type]) => {
+                    const Icon = type.icon
+                    const isActive = activeTab === key
+                    const techCount = groupedTechnologies[key as TechnologyTypeKeys]
+                    const totalCount = techCount ? techCount.top.length + techCount.middle.length + techCount.bottom.length : 0
+                    
+                    return (
+                        <button
+                            key={key}
+                            onClick={() => setActiveTab(key as TechnologyTypeKeys)}
+                            className={`flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium transition-all duration-300 ${
+                                isActive 
+                                    ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg shadow-blue-500/25' 
+                                    : 'bg-white/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 hover:bg-white/70 dark:hover:bg-gray-700/70 backdrop-blur-sm border border-gray-200/30 dark:border-gray-600/30'
+                            }`}
+                        >
+                            <Icon className="w-4 h-4" />
+                            <span className="capitalize">{key === 'language' ? 'Langages' : key === 'framework' ? 'Frameworks' : key === 'tool' ? 'Outils' : key === 'database' ? 'Bases de données' : key === 'platform' ? 'Plateformes' : key === 'software' ? 'Logiciels' : key === 'hardware' ? 'Hardware' : 'Autres'}</span>
+                            <span className="text-xs opacity-75">({totalCount})</span>
+                        </button>
                     )
                 })}
-            </Tabs>
-        </>
+            </div>
+
+            {/* Contenu des technologies */}
+            <div className="min-h-[200px] flex items-center justify-center">
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-4 md:gap-6">
+                    {getCurrentTechnologies().map((tech, index) => {
+                        const isTopPriority = tech.showPriority === 'top'
+                        const isMiddlePriority = tech.showPriority === 'middle'
+                        
+                        return (
+                            <div
+                                key={`${tech.displayName}-${index}`}
+                                className="flex flex-col items-center group cursor-pointer"
+                                title={tech.displayName}
+                            >
+                                <div className={`relative p-3 rounded-xl transition-all duration-300 group-hover:scale-110 group-hover:shadow-xl
+                                    ${isTopPriority 
+                                        ? 'bg-gradient-to-br from-blue-500/20 to-purple-600/20 border-2 border-blue-500/30 dark:border-purple-500/30' 
+                                        : isMiddlePriority
+                                        ? 'bg-white/60 dark:bg-gray-800/60 border border-gray-300/40 dark:border-gray-600/40'
+                                        : 'bg-white/40 dark:bg-gray-800/40 border border-gray-200/30 dark:border-gray-700/30'
+                                    } backdrop-blur-sm`}
+                                >
+                                    {/* Badge de priorité pour les technologies top */}
+                                    {isTopPriority && (
+                                        <div className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full border-2 border-white dark:border-gray-900"></div>
+                                    )}
+                                    
+                                    <Image 
+                                        src={mode === 'dark' ? tech.icon.dark : tech.icon.white}
+                                        alt={tech.displayName}
+                                        width={40} 
+                                        height={40} 
+                                        className={`transition-all duration-300 ${
+                                            isTopPriority 
+                                                ? 'w-10 h-10 md:w-12 md:h-12 opacity-90 group-hover:opacity-100' 
+                                                : 'w-8 h-8 md:w-10 md:h-10 opacity-75 group-hover:opacity-90'
+                                        }`}
+                                    />
+                                </div>
+                                <span className={`mt-2 text-center font-medium transition-all duration-300 ${
+                                    isTopPriority 
+                                        ? 'text-sm text-gray-800 dark:text-gray-200 opacity-100' 
+                                        : 'text-xs text-gray-600 dark:text-gray-400 opacity-0 group-hover:opacity-100'
+                                }`}>
+                                    {tech.displayName}
+                                </span>
+                            </div>
+                        )
+                    })}
+                </div>
+            </div>
+        </div>
     )
 }
 

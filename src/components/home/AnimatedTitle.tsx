@@ -36,6 +36,13 @@ export default function AnimatedTitle() {
     }, [])
 
     return (
-        <h1 className={`text-center text-white md:text-[5em] text-[4em] font-bold rounded leading-[1.2em] md:w-[26rem] w-[22rem] ${passionOne.className} bg-title-gradient`}>&nbsp;{titleValue}&nbsp;</h1>
+        <div className="relative w-full max-w-4xl">
+            <div className="min-h-[5.4em] md:min-h-[6em] flex items-center">
+                <h1 className={`text-white md:text-[6em] text-[4.5em] font-bold leading-[0.9em] ${passionOne.className} bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-gradient bg-300% tracking-tight`}>
+                    {titleValue || '\u00A0'}
+                </h1>
+            </div>
+            <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-lg blur-2xl opacity-10 pointer-events-none"></div>
+        </div>
     )
 }

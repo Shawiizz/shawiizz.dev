@@ -1,112 +1,176 @@
 'use client'
 
 import { passionOne, poppins } from '@/app/fonts'
-import Image from 'next/image'
-import meImage from '../../public/me.png'
-import contactImage from '../../public/contact.png'
-import schoolImage from '../../public/school.png'
-import { projectsPerCategory } from '@/util/data/Projects'
 import Link from 'next/link'
 import React from 'react'
-import { skills } from '@/util/data/Skills'
-import ProjectView from '@/components/home/ProjectView'
 import AnimatedTitle from '@/components/home/AnimatedTitle'
 import Footer from '@/components/Footer'
 import { useAppSelector } from '@/util/redux/Hooks'
 import { selectTranslations } from '@/features/i18n/TranslatorSlice'
 import { getLocaleStringAsArgs } from '@/util/LocaleHelper'
 import Technologies from '@/components/home/Technologies'
+import ExperiencePreview from '@/components/home/ExperiencePreview'
+import AchievementsPreview from '@/components/home/AchievementsPreview'
+import EnhancedContact from '@/components/home/EnhancedContact'
 
 export default function Home() {
     const strings = useAppSelector(selectTranslations)
 
     return (
         <main className='flex min-h-screen flex-col items-center justify-between'>
-            <section className='flex flex-col justify-center items-center h-screen mb-20'>
-                <AnimatedTitle/>
-                <h2 className={`text-center text-gray-600 dark:text-white md:text-4xl text-3xl font-normal tracking-[.561em] mt-7`}>{strings['home.subtitle']}</h2>
-                <Link href={`#myself`}
-                      className={`box-border h-[5vw] w-[5vw] rotate-45 transition-[border-width] duration ease-[ease-in-out] absolute animate-[fadeIn_5s] border-solid border-black bottom-[10%] border-r-2 border-b-2 hover:border-r-4 hover:border-b-4 dark:border-white`}>
-                </Link>
+            <section className='relative flex items-center min-h-screen overflow-hidden w-full'>
+                {/* Background moderne et minimaliste */}
+                <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-gray-900 to-gray-900/80"></div>
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent"></div>
+                
+                {/* Grille subtile en arrière-plan */}
+                <div className="absolute inset-0 opacity-5">
+                    <div className="absolute inset-0" style={{
+                        backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), 
+                                         linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+                        backgroundSize: '50px 50px'
+                    }}></div>
+                </div>
+                
+                {/* Contenu principal aligné à gauche */}
+                <div className="relative z-10 w-full px-6 lg:px-12">
+                    <div className="grid lg:grid-cols-2 gap-16 items-center lg:items-start">
+                        
+                        {/* Colonne gauche - Titre et description */}
+                        <div className="space-y-8 text-center lg:text-left">
+                            <div className="space-y-6">
+                                <AnimatedTitle/>
+                                <div className="space-y-4">
+                                    <h2 className={`text-gray-300 md:text-2xl text-xl font-light tracking-[.3em] ${poppins.className}`}>
+                                        {strings['home.subtitle']}
+                                    </h2>
+                                    <p className="text-gray-400 md:text-lg text-base leading-relaxed">
+                                        Étudiant en informatique passionné par le développement web, mobile et DevOps.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            {/* Actions */}
+                            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                                <Link 
+                                    href="#myself" 
+                                    className="group inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl relative overflow-hidden"
+                                >
+                                    <span className="relative z-10">Découvrir mon profil</span>
+                                    <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                </Link>
+                                <Link 
+                                    href="/achievements" 
+                                    className="group inline-flex items-center justify-center px-8 py-4 border-2 border-white/20 text-white font-semibold rounded-lg hover:bg-white/10 hover:border-white/40 transition-all duration-300 backdrop-blur-sm relative overflow-hidden"
+                                >
+                                    <span className="relative z-10">Mes réalisations</span>
+                                    <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                </Link>
+                            </div>
+                        </div>
+                                          
+                    </div>
+                </div>
+                
+                {/* Indicateur de scroll moderne */}
+                <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center space-y-3">
+                    <div className="flex space-x-1">
+                        <div className="w-1 h-8 bg-white/20 rounded-full"></div>
+                        <div className="w-1 h-8 bg-white/40 rounded-full animate-pulse delay-200"></div>
+                        <div className="w-1 h-8 bg-white/20 rounded-full"></div>
+                    </div>
+                    <Link 
+                        href="#myself" 
+                        className="text-white/60 text-xs font-medium tracking-wider hover:text-white/80 transition-colors duration-300"
+                    >
+                        DÉFILER
+                    </Link>
+                </div>
             </section>
             <section
-                className={`md:mb-10 mb-0 flex justify-between items-center md:w-full w-[90%] md:mt-20 bg-[#fff8f3] dark:bg-gray-800 md:rounded-none rounded-lg md:shadow-none shadow-xl lg:h-[30rem]`}
-                id={`myself`}>
-                <div className={`flex flex-col md:ml-20 mx-6 my-8`}>
-                    <h2 className={`text-[3.8em] md:text-[4.5em] ${passionOne.className} text-gradient bg-[linear-gradient(45deg,#0688fb_0%,#ac07f7_100%)] dark:bg-[linear-gradient(45deg,#2b9cff_0%,#ac07f7_100%)] font-semibold`}>{strings['home.section.1.title']}</h2>
-                    <p className={`pt-5 tracking-[.054em] max-w-4xl text-gray-800 dark:text-white font-normal ${poppins.className} text-[1.35rem] md:text-[1.5rem] leading-[1.2em] md:mr-[5rem]`}>{getLocaleStringAsArgs(strings['home.section.1.text'])[0]}{new Date().getFullYear() - 2004}{getLocaleStringAsArgs(strings['home.section.1.text'])[2]}</p>
-                </div>
-                <div className={`hidden lg:flex h-full w-[35%] bg-[#6e8ef5] justify-center items-center`}>
-                    <Image src={meImage} alt={'Computer science'}
-                           className={`block w-auto max-h-[30rem]`}/>
-                </div>
-            </section>
-            <section
-                className={`mt-20 md:mb-20 flex flex-row-reverse justify-between items-center md:w-full w-[90%] bg-[#fff8f3] dark:bg-gray-800 md:rounded-none rounded-lg md:shadow-none shadow-xl lg:h-[30rem] gap-x-8`}
-                id={`studies`}>
-                <div className={`flex flex-col md:mr-20 my-8 mx-6 md:mx-12`}>
-                    <h2 className={`text-[3.8em] md:text-[4.5em] ${passionOne.className} text-gradient bg-[linear-gradient(180deg,#377cef_0%,#fa4bc8_100%)] dark:bg-[linear-gradient(180deg,#A9C9FF_0%,#FFBBEC_100%)] font-semibold`}>{strings['home.section.2.title']}</h2>
-                    <p className={`pt-5 tracking-[.054em] max-w-4xl text-gray-800 dark:text-white font-normal ${poppins.className} text-[1.35rem] md:text-[1.5rem] leading-[1.2em] md:mr-[5rem]`}>{strings['home.section.2.text']}</p>
-                </div>
-                <div className={`hidden lg:flex h-full w-[35%] bg-[#6e8ef5] justify-center items-center`}>
-                    <Image src={schoolImage} alt={'School'} className={`block w-auto max-h-[20rem]`}/>
-                </div>
-            </section>
-            <section
-                className={`flex justify-evenly items-center w-full md:pt-10 bg-[#fff8f3] dark:bg-transparent md:py-auto py-4`}
-                id={`technologies`}>
-                <div className={`flex flex-col justify-center items-center`}>
-                    <h2 className={`text-[3.8em] md:text-[4.5em] ${passionOne.className} techGradient font-semibold`}>{strings['home.section.tech.title']}</h2>
-                    <p className={`ml-6 mr-6 md:ml-0 md:mr-0 pt-5 tracking-[.054em] text-gray-800 dark:text-white font-semibold text-[1.3rem] md:text-[1.5rem] leading-[1.2em] text-center max-w-screen-md`}>{strings['home.section.tech.text']}</p>
-                    <div className={`flex flex-row flex-wrap gap-10 justify-center mt-10 ml-5 mr-5`}>
-                        <Technologies/>
+                className="w-full bg-gradient-to-b from-gray-900/60 via-gray-700/40 to-gray-50/40 dark:from-gray-900/80 dark:via-gray-800/60 dark:to-gray-800/60"
+                id="myself">
+                <div className="max-w-6xl mx-auto px-6 py-20 md:py-28">
+                    <div className="space-y-8">
+                        <div className="space-y-4">
+                            <h2 className={`text-4xl md:text-5xl ${passionOne.className} font-bold text-gray-900 dark:text-white`}>
+                                {strings['home.section.1.title']}
+                            </h2>
+                            <div className="w-16 h-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"></div>
+                        </div>
+                        
+                        <p className={`text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed max-w-4xl ${poppins.className}`}>
+                            {getLocaleStringAsArgs(strings['home.section.1.text'])[0]}{new Date().getFullYear() - 2004}{getLocaleStringAsArgs(strings['home.section.1.text'])[2]}
+                        </p>
+                        
+                        <Link 
+                            href="/experience" 
+                            className="inline-flex items-center text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-medium transition-colors group"
+                        >
+                            Découvrir mon parcours
+                            <svg className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                        </Link>
                     </div>
                 </div>
             </section>
+
             <section
-                className={`pt-20 pb-20 flex flex-col md:flex-row justify-center items-center md:items-stretch gap-16`}
-                id={`projects`}>
-                <ProjectView projects={projectsPerCategory.personal} title={strings['projects.solo']}/>
-                <ProjectView projects={projectsPerCategory.team} title={strings['projects.team']}/>
-            </section>
-            <div className='w-full overflow-hidden leading-[0] rotate-180 dark:hidden'>
-                <svg data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'
-                     className={`relative block w-[calc(100%_+_1.3px)] md:h-[60px] h-[30px]`}
-                     preserveAspectRatio='none'>
-                    <path d='M1200 120L0 16.48 0 0 1200 0 1200 120z' className='fill-[#fff8f3]'></path>
-                </svg>
-            </div>
-            <div className='w-full overflow-hidden leading-[0] relative bottom-1 dark:hidden'>
-                <svg data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120'
-                     className={`relative block w-[calc(100%_+_1.3px)] md:h-[60px] h-[30px]`}
-                     preserveAspectRatio='none'>
-                    <path
-                        d='M1200 120L0 16.48 0 0 1200 0 1200 120z'
-                        className='fill-[#fff8f3]'></path>
-                </svg>
-            </div>
-            <section
-                className={`flex text-center justify-around items-center ml-10 mr-10 md:pt-20 md:w-full w-80%`}
-                id={`contact`}>
-                <div className={`text-left dark:text-white`}>
-                    <h2 className={`text-[4.5em] ${passionOne.className} contactGradient font-semibold mb-5`}>{strings['home.section.contact.title']}</h2>
-                    <p className={`pb-5 text-2xl tracking-[.054em] font-bold`}>{strings['home.section.contact.text']}</p>
-                    <p>{strings['home.section.contact.mail']} <Link href={`mailto:maelferi04@gmail.com`}
-                                                                    className={`decoration-0 tracking-[.054em] font-extralight`}>maelferi04@gmail.com</Link>
-                    </p>
-                    <p>{strings['home.section.contact.linkedin']} <Link
-                        href={`https://www.linkedin.com/in/ma%C3%ABl-feri-2b2177251/`}
-                        className={`decoration-0 tracking-[.054em] font-extralight`}>Maël Feri</Link>
-                    </p>
-                    <h3 className={`text-3xl tracking-[.054em] font-bold mt-10`}>{getLocaleStringAsArgs(strings['home.section.contact.github'])[0]}
-                        <Link
-                            href={`https://github.com/Shawiizz`}
-                            className={`decoration-dotted tracking-[.054em] font-extralight underline`}>{getLocaleStringAsArgs(strings['home.section.contact.github'])[1]}</Link>{getLocaleStringAsArgs(strings['home.section.contact.github'])[2]}
-                    </h3>
+                className="w-full bg-gradient-to-b from-gray-50/40 via-purple-50/30 to-white/60 dark:from-gray-800/60 dark:via-gray-800/40 dark:to-gray-900/60"
+                id="studies">
+                <div className="max-w-6xl mx-auto px-6 py-20 md:py-28">
+                    <div className="space-y-8">
+                        <div className="space-y-4">
+                            <h2 className={`text-4xl md:text-5xl ${passionOne.className} font-bold text-gray-900 dark:text-white`}>
+                                {strings['home.section.2.title']}
+                            </h2>
+                            <div className="w-16 h-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full"></div>
+                        </div>
+                        
+                        <p className={`text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed max-w-4xl ${poppins.className}`}>
+                            {strings['home.section.2.text']}
+                        </p>
+                        
+                        <Link 
+                            href="/experience#formation" 
+                            className="inline-flex items-center text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300 font-medium transition-colors group"
+                        >
+                            Voir mes études en détail
+                            <svg className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                            </svg>
+                        </Link>
+                    </div>
                 </div>
-                <Image src={contactImage} alt={'Contact'}
-                       className={`hidden md:block w-[30vw] h-auto mb-20`}/>
             </section>
+            <section className='w-full bg-gradient-to-b from-white/60 via-blue-50/20 to-gray-50/30 dark:from-gray-900/60 dark:via-gray-900/40 dark:to-gray-800/50'>
+                <div className="flex flex-col items-center max-w-6xl mx-auto px-6 py-16">
+                    <ExperiencePreview 
+                        title={strings['experience.preview.title']} 
+                        subtitle={strings['experience.preview.subtitle']} 
+                    />
+                    <AchievementsPreview 
+                        title={strings['achievements.preview.title']} 
+                        subtitle={strings['achievements.preview.subtitle']} 
+                    />
+                </div>
+            </section>
+            
+            <section className="w-full py-16 bg-gradient-to-b from-gray-50/30 via-gray-100/20 to-white/40 dark:from-gray-800/50 dark:via-gray-900/40 dark:to-gray-900/60">
+                <div className="max-w-6xl mx-auto px-6">
+                    <div className="text-center mb-12">
+                        <h3 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-4">
+                            {strings['home.section.tech.title']}
+                        </h3>
+                        <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                            {strings['home.section.tech.text']}
+                        </p>
+                    </div>
+                    <Technologies />
+                </div>
+            </section>
+            <EnhancedContact strings={strings} />
             <Footer/>
         </main>
     )
