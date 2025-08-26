@@ -11,6 +11,7 @@ import { HiTrophy } from 'react-icons/hi2'
 import Image from 'next/image'
 import { competencies as competenciesDict, type CompetencyId } from '@/util/data/Competencies'
 import Footer from '@/components/Footer'
+import { replaceLocaleStringArgs } from '@/util/LocaleHelper'
 
 type TabType = 'all' | 'personal' | 'team' | 'academic'
 
@@ -31,12 +32,6 @@ const AchievementsPage = () => {
         contribution: 'info'
     } as const
 
-    const achievementTypeLabels = {
-        project: 'Projet',
-        competition: 'Compétition',
-        recognition: 'Reconnaissance',
-        contribution: 'Contribution'
-    }
 
     const achievementTypeIcons = {
         project: HiCode,
@@ -48,35 +43,35 @@ const AchievementsPage = () => {
     const tabs = [
         {
             id: 'all' as TabType,
-            label: 'Toutes',
+            label: strings['achievements.tab.all.label'],
             icon: HiStar,
             count: sortedAchievements.length,
             color: 'from-yellow-500 to-orange-500',
-            description: 'Toutes mes réalisations'
+            description: strings['achievements.tab.all.description']
         },
         {
             id: 'personal' as TabType,
-            label: 'Projets Solo',
+            label: strings['achievements.tab.personal.label'],
             icon: HiUser,
             count: sortedAchievements.filter(a => a.category === 'personal').length,
             color: 'from-blue-500 to-purple-500',
-            description: 'Projets développés en autonomie'
+            description: strings['achievements.tab.personal.description']
         },
         {
             id: 'team' as TabType,
-            label: 'Projets Équipe',
+            label: strings['achievements.tab.team.label'],
             icon: HiUserGroup,
             count: sortedAchievements.filter(a => a.category === 'team').length,
             color: 'from-green-500 to-teal-500',
-            description: 'Projets collaboratifs'
+            description: strings['achievements.tab.team.description']
         },
         {
             id: 'academic' as TabType,
-            label: 'Projets Académiques',
+            label: strings['achievements.tab.academic.label'],
             icon: HiAcademicCap,
             count: sortedAchievements.filter(a => a.category === 'academic').length,
             color: 'from-purple-500 to-pink-500',
-            description: 'Projets universitaires'
+            description: strings['achievements.tab.academic.description']
         }
     ]
 
@@ -92,7 +87,7 @@ const AchievementsPage = () => {
             <div className='mb-4'>
                 <h5 className='font-semibold text-gray-900 dark:text-white mb-2 text-sm flex items-center gap-1'>
                     <HiAcademicCap className='w-4 h-4' />
-                    Compétences BUT Informatique
+                    {strings['achievements.competencies.title']}
                 </h5>
                 <div className='flex flex-wrap gap-2'>
                     {compIds.map((cid) => {
@@ -104,7 +99,7 @@ const AchievementsPage = () => {
                                 key={cid}
                                 onClick={() => setOpenCompetency({ id: cid, title: comp.title, items, sourceTitle: achievement.title })}
                                 className='focus:outline-none'
-                                aria-label={`Voir détails compétence ${comp.title}`}
+                                aria-label={replaceLocaleStringArgs(strings['achievements.competencies.aria'], comp.title)}
                             >
                                 <Badge color='success' size='sm' className='hover:brightness-110 cursor-pointer'>
                                     {cid} — {comp.short}
@@ -128,12 +123,12 @@ const AchievementsPage = () => {
                                 <IconComponent className='text-white text-xl' />
                             </div>
                             <Badge color={achievementTypeColors[achievement.type]} size='sm'>
-                                {achievementTypeLabels[achievement.type]}
+                                {achievement.type === 'project' ? strings['achievements.type.project'] : achievement.type === 'competition' ? strings['achievements.type.competition'] : achievement.type === 'recognition' ? strings['achievements.type.recognition'] : strings['achievements.type.contribution']}
                             </Badge>
                             <Badge color='gray' size='sm' className='capitalize'>
-                                {achievement.category === 'personal' ? 'Solo' : 
-                                 achievement.category === 'team' ? 'Équipe' : 
-                                 achievement.category === 'academic' ? 'Académique' : 'Autre'}
+                                {achievement.category === 'personal' ? strings['achievements.category.personal'] : 
+                                 achievement.category === 'team' ? strings['achievements.category.team'] : 
+                                 achievement.category === 'academic' ? strings['achievements.category.academic'] : strings['achievements.category.other']}
                             </Badge>
                         </div>
                         <h3 className='text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors'>
@@ -163,7 +158,7 @@ const AchievementsPage = () => {
                     <div className='mb-4'>
                         <h5 className='font-semibold text-gray-900 dark:text-white mb-2 text-sm flex items-center gap-1'>
                             <HiCode className='w-4 h-4' />
-                            Technologies
+                            {strings['header.technologies']}
                         </h5>
                         <div className='flex flex-wrap gap-2'>
                             {achievement.technologies.slice(0, 5).map((tech, idx) => (
@@ -173,7 +168,7 @@ const AchievementsPage = () => {
                             ))}
                             {achievement.technologies.length > 5 && (
                                 <Badge color='gray' size='sm'>
-                                    +{achievement.technologies.length - 5} autres
+                                    +{achievement.technologies.length - 5} {strings['achievements.more']}
                                 </Badge>
                             )}
                         </div>
@@ -185,7 +180,7 @@ const AchievementsPage = () => {
                     <div className='mb-4'>
                         <h5 className='font-semibold text-gray-900 dark:text-white mb-2 text-sm flex items-center gap-1'>
                             <HiUserGroup className='w-4 h-4' />
-                            Collaborateurs
+                            {strings['project.collaborators']}
                         </h5>
                         <div className='flex flex-wrap gap-2'>
                             {achievement.persons.map((person, idx) => (
@@ -214,7 +209,7 @@ const AchievementsPage = () => {
                             className='inline-flex items-center text-sm text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-200 transition-colors'
                         >
                             <HiExternalLink className='w-4 h-4 mr-1' />
-                            Voir le projet
+                            {strings['achievements.viewProject']}
                         </a>
                     </div>
                 )}
@@ -278,12 +273,12 @@ const AchievementsPage = () => {
                 </div>
 
                 {/* Call to Action */}
-                <div className='text-center mt-16 p-8 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl'>
+        <div className='text-center mt-16 p-8 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700 rounded-2xl'>
                     <h3 className='text-2xl font-bold text-gray-900 dark:text-white mb-4'>
-                        Intéressé par mon travail ?
+            {strings['achievements.cta.title']}
                     </h3>
                     <p className='text-gray-700 dark:text-gray-300 mb-6 max-w-2xl mx-auto'>
-                        N'hésitez pas à consulter mes projets sur GitHub ou à me contacter pour discuter de collaborations.
+            {strings['achievements.cta.text']}
                     </p>
                     <div className='flex flex-col sm:flex-row gap-4 justify-center'>
                         <a 
@@ -295,28 +290,28 @@ const AchievementsPage = () => {
                             <svg className='w-5 h-5 mr-2' fill='currentColor' viewBox='0 0 20 20'>
                                 <path fillRule='evenodd' d='M10 0C4.477 0 0 4.484 0 10.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.31.678.921.678 1.856 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0020 10.017C20 4.484 15.522 0 10 0z' clipRule='evenodd' />
                             </svg>
-                            Voir mon GitHub
+                            {strings['achievements.cta.github']}
                         </a>
                         <a 
                             href='/#contact'
                             className='inline-flex items-center px-6 py-3 text-sm font-medium text-blue-600 bg-white border border-blue-600 rounded-lg hover:bg-blue-50 transition-colors dark:text-blue-400 dark:bg-gray-800 dark:border-blue-400 dark:hover:bg-gray-700'
                         >
-                            Me contacter
+                            {strings['achievements.cta.contact']}
                         </a>
                     </div>
                 </div>
             </section>
 
             {/* Modal Compétence BUT */}
-            <Modal show={!!openCompetency} onClose={() => setOpenCompetency(null)} size='lg'>
+        <Modal show={!!openCompetency} onClose={() => setOpenCompetency(null)} size='lg'>
                 <Modal.Header>
-                    {openCompetency ? `${openCompetency.id} — ${openCompetency.title}` : 'Compétence'}
+            {openCompetency ? `${openCompetency.id} — ${openCompetency.title}` : strings['achievements.modal.header.fallback']}
                 </Modal.Header>
                 <Modal.Body>
                     {openCompetency && (
                         <div className='space-y-4'>
                             <p className='text-sm text-gray-600 dark:text-gray-300'>
-                                Lié à : <span className='font-semibold'>{openCompetency.sourceTitle}</span>
+                {strings['achievements.modal.linkedto']} <span className='font-semibold'>{openCompetency.sourceTitle}</span>
                             </p>
                             <ul className='list-disc pl-5 space-y-2'>
                                 {openCompetency.items.map((it, idx) => (
@@ -324,13 +319,13 @@ const AchievementsPage = () => {
                                 ))}
                             </ul>
                             <p className='text-xs text-gray-500 dark:text-gray-400'>
-                                Référentiel BUT Informatique — aperçu synthétique.
+                {strings['achievements.modal.reference']}
                             </p>
                         </div>
                     )}
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button color='gray' onClick={() => setOpenCompetency(null)}>Fermer</Button>
+            <Button color='gray' onClick={() => setOpenCompetency(null)}>{strings['button.close']}</Button>
                 </Modal.Footer>
             </Modal>
             <Footer/>
