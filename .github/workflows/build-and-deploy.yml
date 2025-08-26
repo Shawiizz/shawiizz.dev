@@ -1,4 +1,4 @@
-name: Build and Deploy
+name: Github CI/CD
 
 on:
   push:
@@ -10,11 +10,11 @@ on:
 jobs:
   build:
     if: github.ref_type == 'branch'
-    uses: Shawiizz/devops-framework/.github/workflows/build.yml@1.0.31
+    uses: Shawiizz/devops-framework/.github/workflows/build.yml@1.0.36
 
-  build-and-deploy:
+  deploy:
     if: github.ref_type == 'tag'
-    uses: Shawiizz/devops-framework/.github/workflows/build-and-deploy.yml@1.0.31
+    uses: Shawiizz/devops-framework/.github/workflows/deploy.yml@1.0.36
     with:
       tag: ${{ github.ref_name }}
     secrets: inherit
