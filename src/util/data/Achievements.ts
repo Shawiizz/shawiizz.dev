@@ -113,7 +113,7 @@ export const achievements: Achievement[] = [
         endDate: '2025-06-30',
         type: 'project',
         category: 'academic',
-        technologies: [Technologies.java, Technologies.php, Technologies.mysql, Technologies.html, Technologies.css, Technologies.js, Technologies.git],
+        technologies: [Technologies.java, Technologies.angular, Technologies.mysql, Technologies.html, Technologies.css, Technologies.js, Technologies.git],
         competencies: {
             C1: ['Full stack: back + front + intégration'],
             C4: ['Modélisation et accès BD MySQL'],
