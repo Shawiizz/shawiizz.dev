@@ -1,2 +1,40 @@
 options:
   enable_debug_logs: true
+
+image_management:
+  # Number of healthy versions to keep (each version can have multiple images)
+  # Older healthy versions will be automatically cleaned up
+  # Default: 2 (current + 1 previous healthy version)
+  keep_healthy_versions: 1
+  
+  # Clean up failed deployment images immediately
+  # When true: if health check fails with on_failure='fail', stops containers and deletes images
+  # When false: failed images are kept on the system
+  # Default: true
+  cleanup_on_failure: true
+
+health_checks:
+  # Enable or disable health checks (default: false)
+  enabled: true
+  
+  # Time to wait after deployment before running health checks (in seconds)
+  # This allows your application time to fully start up
+  startup_delay: 15
+  
+  # What to do when a health check fails:
+  # - "fail": Stop the deployment and mark it as failed
+  # - "notify": Continue deployment but show warnings
+  # - "ignore": Run checks but don't affect deployment status
+  # - "rollback": Stop new containers, remove new images, and restart previous containers
+  on_failure: "rollback"
+  
+  # List of endpoints to check
+  # You can use Jinja2 templating with environment variables:
+  endpoints:
+    # Example: Main application health endpoint with dynamic port
+    - name: "Main Application Health"
+      url: "http://localhost:{{ lookup('env', 'APP_EXTERNAL_PORT') }}"
+      expected_status: 200
+      timeout: 30
+      retries: 3
+      retry_delay: 5
