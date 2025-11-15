@@ -10,11 +10,11 @@ on:
 jobs:
   build:
     if: github.ref_type == 'branch'
-    uses: Shawiizz/dockflow/.github/workflows/build.yml@1.0.51
+    uses: Shawiizz/dockflow/.github/workflows/build.yml@1.0.51-dev1
 
   deploy:
     if: github.ref_type == 'tag'
-    uses: Shawiizz/dockflow/.github/workflows/deploy.yml@1.0.51
+    uses: Shawiizz/dockflow/.github/workflows/deploy.yml@1.0.51-dev1
     with:
       tag: ${{ github.ref_name }}
     secrets: inherit
