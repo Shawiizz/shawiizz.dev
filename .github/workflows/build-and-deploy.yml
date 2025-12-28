@@ -13,6 +13,7 @@ jobs:
     uses: Shawiizz/dockflow/.github/workflows/build.yml@2.0.0-dev6
     with:
       environment: production
+    secrets: inherit
 
   deploy:
     if: github.ref_type == 'tag'
