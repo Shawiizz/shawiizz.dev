@@ -33,7 +33,7 @@ health_checks:
   endpoints:
     # Example: Main application health endpoint with dynamic port
     - name: "Main Application Health"
-      url: "http://localhost:{{ lookup('env', 'APP_EXTERNAL_PORT') }}"
+      url: "http://localhost:{{ app_external_port }}"
       expected_status: 200
       timeout: 30
       retries: 3
