@@ -30,17 +30,18 @@ const AchievementsPreview: React.FC<AchievementsPreviewProps> = ({ title, subtit
     const previewAchievements = sortedAchievements.slice(0, 3)
 
     return (
-        <section className='w-full max-w-7xl px-4 py-16 bg-[#fff8f3] dark:bg-transparent'>
-            <div className='text-center mb-12'>
-                <h2 className={`text-[3.8em] md:text-[4.5em] ${passionOne.className} text-gradient bg-[linear-gradient(45deg,#0688fb_0%,#ac07f7_100%)] dark:bg-[linear-gradient(45deg,#2b9cff_0%,#ac07f7_100%)] font-semibold`}>
-                    {title}
-                </h2>
-                {subtitle && (
-                    <p className='pt-5 tracking-[.054em] max-w-4xl mx-auto text-gray-800 dark:text-white font-normal text-[1.35rem] md:text-[1.5rem] leading-[1.2em]'>
-                        {subtitle}
-                    </p>
-                )}
-            </div>
+        <section className='w-full bg-[#fff8f3] dark:bg-transparent'>
+            <div className='max-w-7xl mx-auto px-4 py-16'>
+                <div className='text-center mb-12'>
+                    <h2 className={`text-[3.8em] md:text-[4.5em] ${passionOne.className} text-gradient bg-[linear-gradient(45deg,#0688fb_0%,#ac07f7_100%)] dark:bg-[linear-gradient(45deg,#2b9cff_0%,#ac07f7_100%)] font-semibold`}>
+                        {title}
+                    </h2>
+                    {subtitle && (
+                        <p className='pt-5 tracking-[.054em] max-w-4xl mx-auto text-gray-800 dark:text-white font-normal text-[1.35rem] md:text-[1.5rem] leading-[1.2em]'>
+                            {subtitle}
+                        </p>
+                    )}
+                </div>
 
             <div className='grid md:grid-cols-3 gap-6'>
                 {previewAchievements.map((achievement, index) => (
@@ -131,6 +132,7 @@ const AchievementsPreview: React.FC<AchievementsPreviewProps> = ({ title, subtit
                         <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M9 5l7 7-7 7' />
                     </svg>
                 </Link>
+            </div>
             </div>
         </section>
     )

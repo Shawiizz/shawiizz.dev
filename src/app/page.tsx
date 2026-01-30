@@ -20,14 +20,14 @@ export default function Home() {
         <main className='flex min-h-screen flex-col items-center justify-between'>
             <section className='relative flex items-center min-h-screen overflow-hidden w-full'>
                 {/* Background moderne et minimaliste */}
-                <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-gray-900 to-gray-900/80"></div>
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-blue-900/20 via-transparent to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-gray-100 via-white to-gray-50 dark:from-slate-900 dark:via-gray-900 dark:to-gray-900/80"></div>
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-blue-200/30 via-transparent to-transparent dark:from-blue-900/20 dark:via-transparent dark:to-transparent"></div>
                 
                 {/* Grille subtile en arrière-plan */}
-                <div className="absolute inset-0 opacity-5">
+                <div className="absolute inset-0 opacity-5 dark:opacity-5">
                     <div className="absolute inset-0" style={{
-                        backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), 
-                                         linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+                        backgroundImage: `linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px), 
+                                         linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px)`,
                         backgroundSize: '50px 50px'
                     }}></div>
                 </div>
@@ -41,10 +41,10 @@ export default function Home() {
                             <div className="space-y-6">
                                 <AnimatedTitle/>
                                 <div className="space-y-4">
-                                    <h2 className={`text-gray-300 md:text-2xl text-xl font-light tracking-[.3em] ${poppins.className}`}>
+                                    <h2 className={`text-gray-600 dark:text-gray-300 md:text-2xl text-xl font-light tracking-[.3em] ${poppins.className}`}>
                                         {strings['home.subtitle']}
                                     </h2>
-                                    <p className="text-gray-400 md:text-lg text-base leading-relaxed">
+                                    <p className="text-gray-500 dark:text-gray-400 md:text-lg text-base leading-relaxed">
                                         Étudiant en informatique passionné par le développement web, mobile et DevOps.
                                     </p>
                                 </div>
@@ -61,10 +61,10 @@ export default function Home() {
                                 </Link>
                                 <Link 
                                     href="/achievements" 
-                                    className="group inline-flex items-center justify-center px-8 py-4 border-2 border-white/20 text-white font-semibold rounded-lg hover:bg-white/10 hover:border-white/40 transition-all duration-300 backdrop-blur-sm relative overflow-hidden"
+                                    className="group inline-flex items-center justify-center px-8 py-4 border-2 border-gray-300 dark:border-white/20 text-gray-700 dark:text-white font-semibold rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 hover:border-gray-400 dark:hover:border-white/40 transition-all duration-300 backdrop-blur-sm relative overflow-hidden"
                                 >
                                     <span className="relative z-10">Mes réalisations</span>
-                                    <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                                    <div className="absolute inset-0 bg-gray-100 dark:bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                                 </Link>
                             </div>
                         </div>
@@ -75,20 +75,20 @@ export default function Home() {
                 {/* Indicateur de scroll moderne */}
                 <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center space-y-3">
                     <div className="flex space-x-1">
-                        <div className="w-1 h-8 bg-white/20 rounded-full"></div>
-                        <div className="w-1 h-8 bg-white/40 rounded-full animate-pulse delay-200"></div>
-                        <div className="w-1 h-8 bg-white/20 rounded-full"></div>
+                        <div className="w-1 h-8 bg-gray-400/40 dark:bg-white/20 rounded-full"></div>
+                        <div className="w-1 h-8 bg-gray-500/60 dark:bg-white/40 rounded-full animate-pulse delay-200"></div>
+                        <div className="w-1 h-8 bg-gray-400/40 dark:bg-white/20 rounded-full"></div>
                     </div>
                     <Link 
                         href="#myself" 
-                        className="text-white/60 text-xs font-medium tracking-wider hover:text-white/80 transition-colors duration-300"
+                        className="text-gray-500 dark:text-white/60 text-xs font-medium tracking-wider hover:text-gray-700 dark:hover:text-white/80 transition-colors duration-300"
                     >
                         DÉFILER
                     </Link>
                 </div>
             </section>
             <section
-                className="w-full bg-gradient-to-b from-gray-900/60 via-gray-700/40 to-gray-50/40 dark:from-gray-900/80 dark:via-gray-800/60 dark:to-gray-800/60"
+                className="w-full bg-gradient-to-b from-gray-100/60 via-gray-50/40 to-white/40 dark:from-gray-900/80 dark:via-gray-800/60 dark:to-gray-800/60"
                 id="myself">
                 <div className="max-w-6xl mx-auto px-6 py-20 md:py-28">
                     <div className="space-y-8">
@@ -150,12 +150,12 @@ export default function Home() {
                         title={strings['experience.preview.title']} 
                         subtitle={strings['experience.preview.subtitle']} 
                     />
-                    <AchievementsPreview 
-                        title={strings['achievements.preview.title']} 
-                        subtitle={strings['achievements.preview.subtitle']} 
-                    />
                 </div>
             </section>
+            <AchievementsPreview 
+                title={strings['achievements.preview.title']} 
+                subtitle={strings['achievements.preview.subtitle']} 
+            />
             
             <section className="w-full py-16 bg-gradient-to-b from-gray-50/30 via-gray-100/20 to-white/40 dark:from-gray-800/50 dark:via-gray-900/40 dark:to-gray-900/60">
                 <div className="max-w-6xl mx-auto px-6">
