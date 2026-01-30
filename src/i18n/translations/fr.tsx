@@ -4,7 +4,7 @@ const frTranslation = {
     strings: {
         'home.subtitle': 'PORTFOLIO',
         'home.section.1.title': 'Qui suis-je ?',
-        'home.section.1.text': 'Salut ! Je m\'appelle Maël Feri, aussi connu sous le pseudonyme Shawiiz_z. J\'ai % % ans et je suis passionné d\'informatique et de programmation. J\'apprends à coder en mettant la théorie en pratique depuis plusieurs années. En dehors de l\'informatique, j\'adore faire du VTT, jouer au badminton, et j\'apprends aussi la guitare éléctrique.',
+        'home.section.1.text': 'Salut ! Je suis Maël Feri (alias Shawiizz). J\'ai % % ans et je suis passionné d\'informatique et de programmation. J\'apprends à coder en mettant la théorie en pratique depuis plusieurs années. En dehors de l\'informatique, j\'adore faire du VTT, jouer au badminton, et j\'apprends aussi la guitare éléctrique.',
         'home.section.2.title': 'Mes études',
         'home.section.2.text': 'J\'ai commencé à apprendre le code par moi-même en 2019, en me plongeant dans la programmation en Java. Au lycée, j\'ai choisi la spécialité Système d\'information et numérique de la filière STI2D pour approfondir mes connaissances en programmation et nouvelles technologies. Actuellement, je suis en troisième année de BUT Informatique à l\'IUT Lyon 1 et je compte poursuivre dans cette voie en école d\'ingénieurs durant les trois années à venir.',
         'home.section.contact.title': 'Contact',
@@ -43,7 +43,7 @@ const frTranslation = {
         'project.tclroutes.description': 'Un projet d\'application mobile pour visualiser les itinéraires des TCL de Lyon, dans le cadre d\'un projet à l\'IUT.',
         'project.annuaire.description': 'Un projet d\'annuaire en ligne de commande, dans le cadre d\'un projet à l\'IUT.',
         'project.platine.description': 'Platine est un projet académique d\'ERP développé dans le cadre d\'une SAÉ à l\'IUT qui permet de centraliser les différents services de l\'IUT (Tomuss, emploi du temps, etc.).',
-        'project.devopsframework.description': 'Un framework DevOps open source pour automatiser le déploiement d\'applications Docker via des pipelines CI/CD.',
+        'project.devopsframework.description': 'Un framework DevOps open source pour automatiser le déploiement d\'applications Docker via des pipelines CI/CD et une CLI.',
         'button.language': 'Langue',
         'button.sourcecode': 'Code source',
         'home.title.animation.1': 'Bienvenue',

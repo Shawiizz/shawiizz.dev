@@ -17,12 +17,12 @@ export interface Achievement {
 
 export const achievements: Achievement[] = [
     {
-        title: 'DevOps Framework',
-        description: 'Outil open source de déploiement automatisé d\'applications Docker via des pipelines CI/CD. Framework complet pour l\'automatisation des déploiements.',
+        title: 'Dockflow',
+        description: 'Outil open source de déploiement automatisé d\'applications Docker via des pipelines CI/CD et CLI. Framework complet pour l\'automatisation des déploiements.',
         startDate: '2025-01-01',
         type: 'project',
         category: 'personal',
-        link: 'https://github.com/Shawiizz/devops',
+        link: 'https://github.com/Shawiizz/dockflow',
         technologies: [Technologies.ansible, Technologies.bash, Technologies.docker, Technologies.github, Technologies.gitlab],
         competencies: {
             C1: [

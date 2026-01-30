@@ -9,7 +9,7 @@ const Footer = () => {
 
     return (
         <footer className={`flex justify-center items-center w-full h-[10vh] bg-inherit`}>
-            <Image src={shawiizzIcon} alt={'Shawiiz_z logo'} className={`w-[7vh] h-auto`} />
+            <Image src={shawiizzIcon} alt={'Shawiizz logo'} className={`w-[7vh] h-auto`} />
             <p className={`text-center font-extralight dark:text-white`}>Maël Feri
                  — {strings['footer.description']}</p>
         </footer>
