@@ -13,19 +13,19 @@ export const formations: Formation[] = [
         title: 'École d\'Ingénieur en Informatique et Réseaux de Communication',
         institution: 'CPE Lyon - Villeurbanne',
         period: 'Septembre 2025 - 2028',
-        status: 'planned',
+        status: 'in-progress',
         specialization: 'Ingénieur en informatique et réseaux de communication',
         description: 'Formation d\'ingénieur de 3 ans en informatique et réseaux de communication.',
-        grade: 'À partir de Septembre 2025'
+        grade: 'En cours'
     },
     {
         title: 'Bachelor Universitaire de Technologie (BUT) Informatique',
         institution: 'IUT Lyon 1 - Villeurbanne',
-        period: 'Depuis 2022',
-        status: 'in-progress',
+        period: '2022 - 2025',
+        status: 'completed',
         specialization: 'Bachelor Universitaire de Technologie en Informatique',
         description: 'Formation complète en informatique couvrant le développement logiciel, l\'administration système, la gestion de bases de données, la conduite de projets et le travail en équipe. Formation théorique et pratique avec de nombreux projets concrets.',
-        grade: 'En cours - Fin prévue en 2025'
+        grade: 'Obtenu en 2025'
     },
     {
         title: 'Baccalauréat Technologique STI2D',

@@ -4,9 +4,9 @@ const frTranslation = {
     strings: {
         'home.subtitle': 'PORTFOLIO',
         'home.section.1.title': 'Qui suis-je ?',
-        'home.section.1.text': 'Salut ! Je suis Maël Feri (alias Shawiizz). J\'ai % % ans et je suis passionné d\'informatique et de programmation. J\'apprends à coder en mettant la théorie en pratique depuis plusieurs années. En dehors de l\'informatique, j\'adore faire du VTT, jouer au badminton, et j\'apprends aussi la guitare éléctrique.',
+        'home.section.1.text': 'Je m\'appelle Maël Feri (alias Shawiizz), j\'ai % % ans et je suis passionné par l\'informatique et le développement logiciel. Je code depuis plusieurs années en apprenant surtout par la pratique et l\'expérimentation. En dehors de l\'informatique, je fais du VTT, je joue au badminton et j\'apprends la guitare électrique.',
         'home.section.2.title': 'Mes études',
-        'home.section.2.text': 'J\'ai commencé à apprendre le code par moi-même en 2019, en me plongeant dans la programmation en Java. Au lycée, j\'ai choisi la spécialité Système d\'information et numérique de la filière STI2D pour approfondir mes connaissances en programmation et nouvelles technologies. Actuellement, je suis en troisième année de BUT Informatique à l\'IUT Lyon 1 et je compte poursuivre dans cette voie en école d\'ingénieurs durant les trois années à venir.',
+        'home.section.2.text': 'Passionné par l\'informatique, j\'ai commencé à programmer en 2019 en autodidacte, notamment en Java. Après un baccalauréat STI2D, spécialité Systèmes d\'Information et Numérique, j\'ai obtenu un BUT Informatique à l\'IUT Lyon 1. Je poursuis actuellement mes études en école d\'ingénieurs à CPE Lyon, où je développe mes compétences en ingénierie logicielle et systèmes informatiques.',
         'home.section.contact.title': 'Contact',
         'home.section.contact.text': 'Vous pouvez me contacter via :',
         'home.section.contact.linkedin': 'LinkedIn :',
@@ -90,8 +90,8 @@ const frTranslation = {
         'achievements.title': 'Réalisations',
         'achievements.subtitle': 'Mes principales réalisations et contributions.',
         'experience.preview.title': 'Expériences',
-        'experience.preview.subtitle': 'Aperçu de mon parcours professionnel.',
-        'experience.preview.seeall': 'Voir toutes mes expériences',
+        'experience.preview.subtitle': 'Aperçu de mon parcours professionnel et étudiant.',
+        'experience.preview.seeall': 'Voir toutes mes expériences et formations',
         'achievements.preview.title': 'Mes Réalisations',
         'achievements.preview.subtitle': 'Aperçu de mes réalisations.',
     // Achievements page

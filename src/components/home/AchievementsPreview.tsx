@@ -30,7 +30,7 @@ const AchievementsPreview: React.FC<AchievementsPreviewProps> = ({ title, subtit
     const previewAchievements = sortedAchievements.slice(0, 3)
 
     return (
-        <section className='w-full bg-[#fff8f3] dark:bg-transparent'>
+        <section className='w-full bg-gray-100 dark:bg-[unset]'>
             <div className='max-w-7xl mx-auto px-4 py-16'>
                 <div className='text-center mb-12'>
                     <h2 className={`text-[3.8em] md:text-[4.5em] ${passionOne.className} text-gradient bg-[linear-gradient(45deg,#0688fb_0%,#ac07f7_100%)] dark:bg-[linear-gradient(45deg,#2b9cff_0%,#ac07f7_100%)] font-semibold`}>
@@ -45,56 +45,61 @@ const AchievementsPreview: React.FC<AchievementsPreviewProps> = ({ title, subtit
 
             <div className='grid md:grid-cols-3 gap-6'>
                 {previewAchievements.map((achievement, index) => (
-                    <Card key={index} className='dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-all duration-300 group'>
+                    <div key={index} className='group bg-white dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200 dark:border-gray-700/50 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-300'>
+                        {/* Header */}
                         <div className='flex items-start justify-between mb-4'>
                             <div className='flex-1'>
                                 <div className='flex items-center gap-2 mb-3'>
-                                    <HiStar className='text-yellow-500 text-xl' />
-                                    <Badge color={achievementTypeColors[achievement.type]} size='sm'>
-                                        {achievementTypeLabels[achievement.type]}
-                                    </Badge>
-                                    <Badge color='gray' size='sm' className='capitalize'>
+                                    <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${
+                                        achievement.type === 'project' ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400' :
+                                        achievement.type === 'competition' ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400' :
+                                        achievement.type === 'recognition' ? 'bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400' :
+                                        'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400'
+                                    }`}>
+                                        {achievement.type === 'project' ? 'Projet' : achievement.type === 'competition' ? 'Compétition' : achievement.type === 'recognition' ? 'Reconnaissance' : 'Contribution'}
+                                    </span>
+                                    <span className='text-xs font-medium px-2.5 py-1 rounded-full bg-gray-100 dark:bg-gray-700/50 text-gray-600 dark:text-gray-400'>
                                         {achievement.category === 'personal' ? 'Solo' : 
                                          achievement.category === 'team' ? 'Équipe' : 
                                          achievement.category === 'academic' ? 'Académique' : 'Autre'}
-                                    </Badge>
+                                    </span>
                                 </div>
-                                <h3 className='text-lg font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors'>
+                                <h3 className='text-xl font-bold text-gray-900 dark:text-white mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors'>
                                     {achievement.title}
                                 </h3>
-                                <div className='flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 mb-3'>
-                                    <HiCalendar />
+                                <span className='text-sm font-medium text-gray-600 dark:text-gray-400'>
                                     {formatDateRange(achievement)}
-                                </div>
+                                </span>
                             </div>
                             {achievement.link && (
-                                <a href={achievement.link} target='_blank' rel='noopener noreferrer' className='text-gray-400 hover:text-blue-600 transition-colors'>
-                                    <HiExternalLink className='w-5 h-5' />
+                                <a href={achievement.link} target='_blank' rel='noopener noreferrer' className='p-2 text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-700/50 rounded-lg transition-all'>
+                                    <HiExternalLink className='w-4 h-4' />
                                 </a>
                             )}
                         </div>
 
-                        <p className='text-gray-700 dark:text-gray-300 text-sm leading-relaxed mb-4'>
+                        {/* Description */}
+                        <p className='text-gray-700 dark:text-gray-300 text-base leading-relaxed mb-5'>
                             {achievement.description}
                         </p>
 
                         {/* Technologies - preview */}
                         {achievement.technologies && achievement.technologies.length > 0 && (
                             <div className='mb-4'>
-                                <div className='flex items-center gap-1 mb-2'>
-                                    <HiCode className='w-4 h-4 text-gray-600 dark:text-gray-400' />
-                                    <span className='text-sm font-medium text-gray-600 dark:text-gray-400'>Technologies</span>
+                                <div className='flex items-center gap-1.5 mb-2 text-gray-600 dark:text-gray-400'>
+                                    <HiCode className='w-3.5 h-3.5' />
+                                    <span className='text-xs font-semibold uppercase tracking-wider'>Technologies</span>
                                 </div>
-                                <div className='flex flex-wrap gap-1'>
+                                <div className='flex flex-wrap gap-1.5'>
                                     {achievement.technologies.slice(0, 3).map((tech, idx) => (
-                                        <Badge key={idx} color='info' size='sm' className='text-xs'>
+                                        <span key={idx} className='text-sm px-2.5 py-1 rounded-full bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 font-medium'>
                                             {tech.displayName}
-                                        </Badge>
+                                        </span>
                                     ))}
                                     {achievement.technologies.length > 3 && (
-                                        <Badge color='gray' size='sm' className='text-xs'>
+                                        <span className='text-sm px-2.5 py-1 rounded-full bg-gray-100 dark:bg-gray-700/50 text-gray-600 dark:text-gray-400'>
                                             +{achievement.technologies.length - 3}
-                                        </Badge>
+                                        </span>
                                     )}
                                 </div>
                             </div>
@@ -103,25 +108,25 @@ const AchievementsPreview: React.FC<AchievementsPreviewProps> = ({ title, subtit
                         {/* Collaborateurs - preview */}
                         {achievement.persons && achievement.persons.length > 0 && (
                             <div className='mb-4'>
-                                <div className='flex items-center gap-1 mb-2'>
-                                    <HiUserGroup className='w-4 h-4 text-gray-600 dark:text-gray-400' />
-                                    <span className='text-sm font-medium text-gray-600 dark:text-gray-400'>Avec</span>
+                                <div className='flex items-center gap-1.5 mb-2 text-gray-600 dark:text-gray-400'>
+                                    <HiUserGroup className='w-3.5 h-3.5' />
+                                    <span className='text-xs font-semibold uppercase tracking-wider'>Avec</span>
                                 </div>
-                                <div className='flex flex-wrap gap-1'>
+                                <div className='flex flex-wrap gap-1.5'>
                                     {achievement.persons.slice(0, 2).map((person, idx) => (
-                                        <Badge key={idx} color='purple' size='sm' className='text-xs'>
+                                        <span key={idx} className='text-sm px-2.5 py-1 rounded-full bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400 font-medium'>
                                             {person.name}
-                                        </Badge>
+                                        </span>
                                     ))}
                                     {achievement.persons.length > 2 && (
-                                        <Badge color='gray' size='sm' className='text-xs'>
+                                        <span className='text-sm px-2.5 py-1 rounded-full bg-gray-100 dark:bg-gray-700/50 text-gray-600 dark:text-gray-400'>
                                             +{achievement.persons.length - 2}
-                                        </Badge>
+                                        </span>
                                     )}
                                 </div>
                             </div>
                         )}
-                    </Card>
+                    </div>
                 ))}
             </div>
 

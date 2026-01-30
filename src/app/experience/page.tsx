@@ -18,13 +18,16 @@ type OpenCompetencyState = {
     sourceTitle: string;
 } | null;
 
+// Toggle to show/hide BUT informatique competencies on experiences
+const SHOW_BUT_COMPETENCIES = false
+
 const ExperiencePage = () => {
     const strings = useAppSelector(selectTranslations)
     const [openCompetency, setOpenCompetency] = React.useState<OpenCompetencyState>(null);
 
     return (
         <>
-        <main className='flex min-h-screen flex-col items-center pt-16'>
+        <main className='flex min-h-screen flex-col items-center pt-16 bg-gray-50 dark:bg-gray-900'>
             {/* Section Expériences */}
             <section className='w-full max-w-7xl px-4 py-16'>
                 <div className='text-center mb-12'>
@@ -47,47 +50,53 @@ const ExperiencePage = () => {
                             
                             {/* Card */}
                             <div className={`ml-12 md:ml-0 md:w-5/12 ${index % 2 === 0 ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'}`}>
-                                <Card className='dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow duration-300'>
-                                    <div className='flex items-start justify-between'>
+                                <div className='group bg-white dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200 dark:border-gray-700/50 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-300'>
+                                    {/* Header */}
+                                    <div className='flex items-start justify-between mb-4'>
                                         <div className='flex-1'>
-                                            <div className='flex items-center gap-2 mb-2'>
-                                                <HiBriefcase className='text-blue-500 text-xl' />
-                                                <Badge color='purple' size='sm'>
+                                            <div className='flex items-center gap-2 mb-3'>
+                                                <span className='text-xs font-medium px-2.5 py-1 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400'>
                                                     {experienceTypes[experience.type]}
-                                                </Badge>
+                                                </span>
                                             </div>
-                                            <h3 className='text-xl font-bold text-gray-900 dark:text-white mb-1'>
+                                            <h3 className='text-xl font-bold text-gray-900 dark:text-white mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors'>
                                                 {experience.title}
                                             </h3>
-                                            <h4 className='text-lg font-semibold text-blue-600 dark:text-blue-400 mb-2'>
+                                            <h4 className='text-lg font-semibold text-blue-600 dark:text-blue-400 mb-3'>
                                                 {experience.company}
                                             </h4>
-                                            <div className='flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400 mb-4'>
+                                            <div className='flex flex-wrap items-center gap-3 text-sm text-gray-500 dark:text-gray-400'>
                                                 <div className='flex items-center gap-1'>
-                                                    <HiLocationMarker />
-                                                    {experience.location}
+                                                    <HiLocationMarker className='w-3.5 h-3.5' />
+                                                    <span>{experience.location}</span>
                                                 </div>
                                                 <div className='flex items-center gap-1'>
-                                                    <HiCalendar />
-                                                    {experience.period}
+                                                    <HiCalendar className='w-3.5 h-3.5' />
+                                                    <span>{experience.period}</span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
 
-                                    <div className='mb-4'>
-                                        <ul className='list-disc list-inside space-y-1 text-gray-700 dark:text-gray-300'>
+                                    {/* Description */}
+                                    <div className='mb-5'>
+                                        <ul className='space-y-1.5 text-gray-700 dark:text-gray-300 text-base'>
                                             {experience.description.map((desc, idx) => (
-                                                <li key={idx}>{desc}</li>
+                                                <li key={idx} className='flex items-start gap-2'>
+                                                    <span className='text-blue-500 mt-1.5'>•</span>
+                                                    <span>{desc}</span>
+                                                </li>
                                             ))}
                                         </ul>
                                     </div>
 
                                     {/* Compétences BUT cliquables */}
-                                    {experience.competencies && (
+                                    {SHOW_BUT_COMPETENCIES && experience.competencies && (
                                         <div className='mb-4'>
-                                            <h5 className='font-semibold text-gray-900 dark:text-white mb-2'>Compétences BUT Informatique :</h5>
-                                            <div className='flex flex-wrap gap-2'>
+                                            <div className='flex items-center gap-1.5 mb-2 text-gray-600 dark:text-gray-400'>
+                                                <span className='text-xs font-semibold uppercase tracking-wider'>Compétences BUT</span>
+                                            </div>
+                                            <div className='flex flex-wrap gap-1.5'>
                                                 {(Object.keys(experience.competencies) as CompetencyId[]).map((cid) => {
                                                     const comp = competenciesDict[cid]
                                                     const items = experience.competencies?.[cid] || []
@@ -96,11 +105,9 @@ const ExperiencePage = () => {
                                                         <button
                                                             key={cid}
                                                             onClick={() => setOpenCompetency({ id: cid, title: comp.title, items, sourceTitle: experience.title })}
-                                                            className='focus:outline-none'
+                                                            className='text-xs px-2.5 py-1 rounded-full bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400 font-medium hover:bg-emerald-100 dark:hover:bg-emerald-900/40 transition-colors cursor-pointer'
                                                         >
-                                                            <Badge color='success' size='sm' className='hover:brightness-110 cursor-pointer'>
-                                                                {cid} — {comp.short}
-                                                            </Badge>
+                                                            {cid} — {comp.short}
                                                         </button>
                                                     )
                                                 })}
@@ -108,17 +115,22 @@ const ExperiencePage = () => {
                                         </div>
                                     )}
 
+                                    {/* Technologies */}
                                     {experience.technologies && (
                                         <div>
-                                            <h5 className='font-semibold text-gray-900 dark:text-white mb-2'>Technologies utilisées :</h5>
-                                            <div className='flex flex-wrap gap-2'>
+                                            <div className='flex items-center gap-1.5 mb-2 text-gray-600 dark:text-gray-400'>
+                                                <span className='text-xs font-semibold uppercase tracking-wider'>Technologies</span>
+                                            </div>
+                                            <div className='flex flex-wrap gap-1.5'>
                                                 {experience.technologies.map((tech, idx) => (
-                                                    <Badge key={idx} color='info' size='sm'>{tech}</Badge>
+                                                    <span key={idx} className='text-sm px-2.5 py-1 rounded-full bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 font-medium'>
+                                                        {tech}
+                                                    </span>
                                                 ))}
                                             </div>
                                         </div>
                                     )}
-                                </Card>
+                                </div>
                             </div>
                         </div>
                     ))}
@@ -126,7 +138,7 @@ const ExperiencePage = () => {
             </section>
 
             {/* Section Formation */}
-            <section className='w-full bg-gray-50 dark:bg-gray-900' id='formation'>
+            <section className='w-full bg-white dark:bg-gray-800/30' id='formation'>
                 <div className='max-w-7xl mx-auto px-4 py-16'>
                     <div className='text-center mb-12'>
                         <h2 className={`text-[3em] md:text-[3.5em] ${passionOne.className} text-gradient bg-[linear-gradient(180deg,#377cef_0%,#fa4bc8_100%)] dark:bg-[linear-gradient(180deg,#A9C9FF_0%,#FFBBEC_100%)] font-semibold`}>
@@ -136,41 +148,44 @@ const ExperiencePage = () => {
 
                     <div className='grid md:grid-cols-2 gap-8'>
                         {formations.map((formation, index) => (
-                            <Card key={index} className='dark:bg-gray-800 border border-gray-200 dark:border-gray-700'>
+                            <div key={index} className='group bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200 dark:border-gray-700/50 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-300'>
                                 <div className='flex items-start gap-4'>
-                                    <HiAcademicCap className='text-blue-500 text-2xl mt-1' />
+                                    <div className='p-2.5 rounded-xl bg-blue-100 dark:bg-blue-900/30'>
+                                        <HiAcademicCap className='text-blue-600 dark:text-blue-400 text-xl' />
+                                    </div>
                                     <div className='flex-1'>
-                                        <h3 className='text-xl font-bold text-gray-900 dark:text-white mb-2'>
+                                        <h3 className='text-xl font-bold text-gray-900 dark:text-white mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors'>
                                             {formation.title}
                                         </h3>
-                                        <h4 className='text-lg font-semibold text-blue-600 dark:text-blue-400 mb-2'>
+                                        <h4 className='text-lg font-semibold text-blue-600 dark:text-blue-400 mb-3'>
                                             {formation.institution}
                                         </h4>
-                                        <div className='flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400 mb-3'>
+                                        <div className='flex flex-wrap items-center gap-3 text-sm text-gray-500 dark:text-gray-400 mb-3'>
                                             <div className='flex items-center gap-1'>
-                                                <HiCalendar />
-                                                {formation.period}
+                                                <HiCalendar className='w-3.5 h-3.5' />
+                                                <span>{formation.period}</span>
                                             </div>
-                                            <Badge 
-                                                color={formation.status === 'completed' ? 'success' : formation.status === 'in-progress' ? 'warning' : 'info'}
-                                                size='sm'
-                                            >
+                                            <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${
+                                                formation.status === 'completed' ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400' :
+                                                formation.status === 'in-progress' ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400' :
+                                                'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400'
+                                            }`}>
                                                 {formation.status === 'completed' ? 'Terminé' : formation.status === 'in-progress' ? 'En cours' : 'Prévu'}
-                                            </Badge>
+                                            </span>
                                         </div>
                                         {formation.specialization && (
-                                            <p className='text-purple-600 dark:text-purple-400 font-medium mb-2'>
+                                            <p className='text-purple-600 dark:text-purple-400 font-medium text-sm mb-2'>
                                                 {formation.specialization}
                                             </p>
                                         )}
                                         {formation.description && (
-                                            <p className='text-gray-700 dark:text-gray-300'>
+                                            <p className='text-gray-700 dark:text-gray-300 text-base leading-relaxed'>
                                                 {formation.description}
                                             </p>
                                         )}
                                     </div>
                                 </div>
-                            </Card>
+                            </div>
                         ))}
                     </div>
                 </div>

@@ -152,10 +152,12 @@ export default function Home() {
                     />
                 </div>
             </section>
-            <AchievementsPreview 
-                title={strings['achievements.preview.title']} 
-                subtitle={strings['achievements.preview.subtitle']} 
-            />
+            <section className='w-full dark:bg-gradient-to-b dark:from-gray-800/50 dark:via-gray-900/40 dark:to-gray-800/50'>
+                <AchievementsPreview 
+                    title={strings['achievements.preview.title']} 
+                    subtitle={strings['achievements.preview.subtitle']} 
+                />
+            </section>
             
             <section className="w-full py-16 bg-gradient-to-b from-gray-50/30 via-gray-100/20 to-white/40 dark:from-gray-800/50 dark:via-gray-900/40 dark:to-gray-900/60">
                 <div className="max-w-6xl mx-auto px-6">
