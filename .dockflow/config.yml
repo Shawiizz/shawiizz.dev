@@ -38,3 +38,4 @@ health_checks:
       timeout: 30
       retries: 3
       retry_delay: 5
+      remote: true
