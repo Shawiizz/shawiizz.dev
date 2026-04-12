@@ -1,8 +1,5 @@
 project_name: "shawiizz-dev"
 
-options:
-  enable_debug_logs: true
-
 stack_management:
   # Number of previous releases to keep for rollback
   # Each release contains a docker-compose.yml, metadata.json with images list
