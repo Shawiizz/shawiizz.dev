@@ -1,41 +1,12 @@
-project_name: "shawiizz-dev"
-
-stack_management:
-  # Number of previous releases to keep for rollback
-  # Each release contains a docker-compose.yml, metadata.json with images list
-  # Older releases and their images are automatically cleaned up
-  # Default: 3 releases kept
-  keep_releases: 3
-  
-  # Clean up failed deployment images immediately
-  # When true: if health check fails with on_failure='fail', stops containers and deletes images
-  # When false: failed images are kept on the system
-  # Default: true
-  cleanup_on_failure: true
+project_name: self-website
 
 health_checks:
-  # Enable or disable health checks (default: false)
   enabled: true
-  
-  # Time to wait after deployment before running health checks (in seconds)
-  # This allows your application time to fully start up
-  startup_delay: 15
-  
-  # What to do when a health check fails:
-  # - "fail": Stop the deployment and mark it as failed
-  # - "notify": Continue deployment but show warnings
-  # - "ignore": Run checks but don't affect deployment status
-  # - "rollback": Stop new containers, remove new images, and restart previous containers
   on_failure: "rollback"
-  
-  # List of endpoints to check
-  # You can use Jinja2 templating with environment variables:
   endpoints:
-    # Example: Main application health endpoint with dynamic port
-    - name: "Main Application Health"
-      url: "http://localhost:{{ current.env.app_external_port }}"
+    - name: "Main Application"
+      url: "https://{{ current.env.main_domain }}/"
       expected_status: 200
       timeout: 30
       retries: 3
       retry_delay: 5
-      remote: true

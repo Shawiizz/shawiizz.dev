@@ -15,8 +15,20 @@ export interface Experience {
 
 export const experiences: Experience[] = [
     {
+        title: 'Développeur logiciel',
+        company: 'Sopra Steria',
+        location: 'Lyon, France',
+        period: 'Septembre 2025 - Aujourd\'hui',
+        type: 'work',
+        description: [
+            'Développement et maintenance d\'un logiciel de gestion immobilière',
+            'Travail sur les modules métier en Oracle Forms et Oracle PL/SQL',
+        ],
+        technologies: ['Oracle Forms', 'Oracle PL/SQL'],
+    },
+    {
         title: 'Stage et alternance - Développeur fullstack',
-        company: 'AXOPEN',
+        company: 'Axopen',
         location: 'Lyon, France',
         period: 'Avril 2024 - Septembre 2025',
         type: 'alternance',
@@ -57,7 +69,7 @@ export const experiences: Experience[] = [
     },
     {
         title: 'Stage d\'observation',
-        company: 'INETUM',
+        company: 'Inetum',
         location: 'Lyon, France',
         period: 'Janvier 2019',
         type: 'internship',

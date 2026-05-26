@@ -1,6 +1,6 @@
 services:
   app:
-    image: shawiizz-portfolio-frontend
+    image: self-website
     build:
       context: ../..
       dockerfile: Dockerfile.app

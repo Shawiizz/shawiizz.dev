@@ -122,6 +122,12 @@ const AchievementsPage = () => {
                 <div className='flex items-start justify-between mb-4'>
                     <div className='flex-1'>
                         <div className='flex items-center gap-2 mb-3'>
+                            {achievement.starred && (
+                                <span className='inline-flex items-center gap-1 text-xs font-medium px-2.5 py-1 rounded-full bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400'>
+                                    <HiStar className='w-3 h-3 shrink-0' />
+                                    Mis en avant
+                                </span>
+                            )}
                             <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${
                                 achievement.type === 'project' ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400' :
                                 achievement.type === 'competition' ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400' :
@@ -131,8 +137,8 @@ const AchievementsPage = () => {
                                 {achievement.type === 'project' ? strings['achievements.type.project'] : achievement.type === 'competition' ? strings['achievements.type.competition'] : achievement.type === 'recognition' ? strings['achievements.type.recognition'] : strings['achievements.type.contribution']}
                             </span>
                             <span className='text-xs font-medium px-2.5 py-1 rounded-full bg-gray-100 dark:bg-gray-700/50 text-gray-600 dark:text-gray-400'>
-                                {achievement.category === 'personal' ? strings['achievements.category.personal'] : 
-                                 achievement.category === 'team' ? strings['achievements.category.team'] : 
+                                {achievement.category === 'personal' ? strings['achievements.category.personal'] :
+                                 achievement.category === 'team' ? strings['achievements.category.team'] :
                                  achievement.category === 'academic' ? strings['achievements.category.academic'] : strings['achievements.category.other']}
                             </span>
                         </div>

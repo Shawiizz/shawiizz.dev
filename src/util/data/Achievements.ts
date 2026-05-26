@@ -10,6 +10,7 @@ export interface Achievement {
     type: 'project' | 'competition' | 'recognition' | 'contribution';
     category: 'personal' | 'team' | 'academic' | 'achievement';
     link?: string;
+    starred?: boolean;
     technologies?: Technology[];
     persons?: Person[];
     competencies?: Partial<Record<CompetencyId, string[]>>;
@@ -23,6 +24,7 @@ export const achievements: Achievement[] = [
         type: 'project',
         category: 'personal',
         link: 'https://github.com/Shawiizz/dockflow',
+        starred: true,
         technologies: [Technologies.ansible, Technologies.bash, Technologies.docker, Technologies.github, Technologies.gitlab],
         competencies: {
             C1: [
@@ -203,6 +205,8 @@ export const formatDateRange = (achievement: Achievement): string => {
 }
 
 export const sortedAchievements = [...achievements].sort((a, b) => {
+    if (a.starred && !b.starred) return -1;
+    if (!a.starred && b.starred) return 1;
     const dateA = getDateForSorting(a);
     const dateB = getDateForSorting(b);
     return dateB.getTime() - dateA.getTime();

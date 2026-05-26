@@ -3,4 +3,5 @@ servers:
     role: manager
     tags: [production]
     env:
+      MAIN_DOMAIN: "maelferi.com"
       APP_EXTERNAL_PORT: "24000"
