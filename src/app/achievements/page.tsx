@@ -159,12 +159,12 @@ function FeaturedCard({ achievement, poppins }: { achievement: Achievement; popp
                     <h2 className={`${passionOne.className} text-5xl md:text-7xl font-black uppercase leading-none text-gray-900 dark:text-white mb-3`}>
                         {achievement.title}
                     </h2>
-                    <p className={`text-sm text-gray-400 dark:text-gray-500 ${poppins.className}`}>
+                    <p className={`text-sm text-gray-400 dark:text-gray-500 ${poppins}`}>
                         {formatDateRange(achievement)}
                     </p>
                 </div>
 
-                <p className={`text-base text-gray-600 dark:text-gray-300 leading-relaxed max-w-lg ${poppins.className}`}>
+                <p className={`text-base text-gray-600 dark:text-gray-300 leading-relaxed max-w-lg ${poppins}`}>
                     {achievement.description}
                 </p>
 
@@ -185,7 +185,7 @@ function FeaturedCard({ achievement, poppins }: { achievement: Achievement; popp
             <div className='space-y-8 md:pt-2'>
                 {achievement.technologies && achievement.technologies.length > 0 && (
                     <div className='space-y-3'>
-                        <p className={`text-xs uppercase tracking-widest text-gray-400 dark:text-gray-500 ${poppins.className}`}>Stack</p>
+                        <p className={`text-xs uppercase tracking-widest text-gray-400 dark:text-gray-500 ${poppins}`}>Stack</p>
                         <div className='flex flex-wrap gap-2'>
                             {achievement.technologies.map((tech, i) => (
                                 <span key={i} className='text-xs px-3 py-1.5 rounded-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300 font-medium'>
@@ -197,7 +197,7 @@ function FeaturedCard({ achievement, poppins }: { achievement: Achievement; popp
                 )}
                 {achievement.persons && achievement.persons.length > 0 && (
                     <div className='space-y-3'>
-                        <p className={`text-xs uppercase tracking-widest text-gray-400 dark:text-gray-500 ${poppins.className}`}>Collaborateurs</p>
+                        <p className={`text-xs uppercase tracking-widest text-gray-400 dark:text-gray-500 ${poppins}`}>Collaborateurs</p>
                         <div className='flex flex-wrap gap-2'>
                             {achievement.persons.map((p, i) => (
                                 <a key={i} href={p.link} target='_blank' rel='noopener noreferrer'
@@ -240,7 +240,7 @@ function AchievementRow({ achievement, poppins }: { achievement: Achievement; po
                     )}
                 </div>
 
-                <span className={`hidden md:block text-sm text-gray-400 dark:text-gray-600 ${poppins.className}`}>
+                <span className={`hidden md:block text-sm text-gray-400 dark:text-gray-600 ${poppins}`}>
                     {formatDateRange(achievement)}
                 </span>
 
@@ -256,7 +256,7 @@ function AchievementRow({ achievement, poppins }: { achievement: Achievement; po
             {open && (
                 <div className='pb-6 grid md:grid-cols-[1fr_280px] gap-8'>
                     <div className='space-y-4'>
-                        <p className={`text-sm text-gray-600 dark:text-gray-300 leading-relaxed ${poppins.className}`}>
+                        <p className={`text-sm text-gray-600 dark:text-gray-300 leading-relaxed ${poppins}`}>
                             {achievement.description}
                         </p>
                         {achievement.persons && achievement.persons.length > 0 && (
