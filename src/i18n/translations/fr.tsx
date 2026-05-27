@@ -67,7 +67,7 @@ const frTranslation = {
         'tech.type.software': 'Logiciel',
         'tech.type.hardware': 'Matériel',
         'tech.type.other': 'Autre',
-        'home.section.tech.title': 'Technologies & Compétences',
+        'home.section.tech.title': 'Technos',
         'home.section.tech.text': 'Découvrez les technologies que j\'utilise au quotidien et les outils qui m\'accompagnent dans mes projets.',
         'pagination.previous': 'Précédent',
         'pagination.next': 'Suivant',
@@ -87,16 +87,16 @@ const frTranslation = {
         'softskills.title': 'Compétences transversales',
         'softskills.subtitle': 'Mes soft skills et qualités humaines développées au cours de mon parcours.',
         'header.experience': 'Expériences',
-        'achievements.title': 'Réalisations',
-        'achievements.subtitle': 'Mes principales réalisations et contributions.',
+        'achievements.title': 'Projets',
+        'achievements.subtitle': 'Mes principales projets et contributions.',
         'experience.preview.title': 'Expériences',
         'experience.preview.subtitle': 'Aperçu de mon parcours professionnel et étudiant.',
         'experience.preview.seeall': 'Voir toutes mes expériences et formations',
-        'achievements.preview.title': 'Mes Réalisations',
-        'achievements.preview.subtitle': 'Aperçu de mes réalisations.',
+        'achievements.preview.title': 'Mes Projets',
+        'achievements.preview.subtitle': 'Aperçu de mes projets.',
     // Achievements page
     'achievements.tab.all.label': 'Toutes',
-    'achievements.tab.all.description': 'Toutes mes réalisations',
+    'achievements.tab.all.description': 'Toutes mes projets',
     'achievements.tab.personal.label': 'Projets Solo',
     'achievements.tab.personal.description': 'Projets développés en autonomie',
     'achievements.tab.team.label': 'Projets Équipe',
@@ -122,6 +122,42 @@ const frTranslation = {
     'achievements.modal.header.fallback': 'Compétence',
     'achievements.modal.linkedto': 'Lié à :',
     'achievements.modal.reference': 'Référentiel BUT Informatique — aperçu synthétique.',
+    // Hero
+    'home.hero.cta.discover': 'Découvrir mon profil',
+    'home.hero.cta.achievements': 'Mes projets',
+    'hero.marquee.engineer': 'Ingénieur',
+    // About section
+    'home.about.eyebrow': 'À propos',
+    'home.about.stat.age.label': 'ans',
+    'home.about.stat.code.sub': 'Début du code',
+    'home.about.stat.school.sub': 'Ingénieur informatique',
+    'home.about.link.career': 'Parcours professionnel',
+    'home.about.link.education': 'Formation',
+    // Tech section
+    'home.section.tech.eyebrow': 'Stack technique',
+    'home.section.tech.mastered': 'Maîtrisé',
+    'home.section.tech.practiced': 'Pratiqué',
+    // Contact
+    'contact.eyebrow': 'Prenons contact',
+    // Experience page
+    'experience.page.eyebrow': 'Parcours professionnel',
+    'experience.page.status.active': 'En poste',
+    'experience.formation.eyebrow': 'Formation',
+    'experience.formation.status.completed': 'Terminé',
+    'experience.formation.status.inprogress': 'En cours',
+    'experience.formation.status.planned': 'Prévu',
+    // Achievements page
+    'achievements.page.eyebrow': 'Portfolio & Projets',
+    'achievements.page.tab.all': 'Tout',
+    'achievements.page.empty': 'Aucune réalisation dans cette catégorie.',
+    'achievements.page.opensource.eyebrow': 'Open source',
+    'achievements.page.opensource.text': 'Plus de projets disponibles sur GitHub',
+    // Preview sections
+    'home.preview.exp.eyebrow': 'Parcours professionnel',
+    'home.preview.exp.status': 'En cours',
+    'home.preview.exp.count': '% expériences',
+    'home.preview.ach.count': '% projets',
+    'home.preview.ach.cta': 'Voir toutes mes projets',
     }
 }
 

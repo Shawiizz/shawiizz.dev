@@ -1,16 +1,9 @@
-import Image from 'next/image'
-import shawiizzIcon from '@/app/favicon.ico'
 import React from 'react'
-import { useAppSelector } from '@/util/redux/Hooks'
-import { selectTranslations } from '@/features/i18n/TranslatorSlice'
 
 const Footer = () => {
-    const strings = useAppSelector(selectTranslations)
-
     return (
-        <footer className={`flex justify-center items-center w-full h-[10vh] bg-inherit`}>
-            <Image src={shawiizzIcon} alt={'Shawiizz logo'} className={`w-[7vh] h-auto`} />
-            <p className={`text-center font-extralight dark:text-white`}>Maël Feri</p>
+        <footer className='flex justify-center items-center w-full h-[10vh] bg-inherit'>
+            <p className='text-base font-light text-gray-500 dark:text-gray-500'>Maël Feri</p>
         </footer>
     )
 }

@@ -6,6 +6,7 @@ export interface Experience {
     location: string;
     period: string;
     type: 'internship' | 'work' | 'alternance' | 'freelance';
+    tags?: string[];
     description: string[];
     technologies?: string[];
     achievements?: string[];
@@ -19,7 +20,7 @@ export const experiences: Experience[] = [
         company: 'Sopra Steria',
         location: 'Lyon, France',
         period: 'Septembre 2025 - Aujourd\'hui',
-        type: 'work',
+        type: 'alternance',
         description: [
             'Développement et maintenance d\'un logiciel de gestion immobilière',
             'Travail sur les modules métier en Oracle Forms et Oracle PL/SQL',
@@ -27,8 +28,9 @@ export const experiences: Experience[] = [
         technologies: ['Oracle Forms', 'Oracle PL/SQL'],
     },
     {
-        title: 'Stage et alternance - Développeur fullstack',
+        title: 'Développeur fullstack',
         company: 'Axopen',
+        tags: ['Stage'],
         location: 'Lyon, France',
         period: 'Avril 2024 - Septembre 2025',
         type: 'alternance',

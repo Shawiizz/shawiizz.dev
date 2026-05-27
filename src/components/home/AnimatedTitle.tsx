@@ -1,4 +1,5 @@
-import { passionOne } from '@/app/fonts'
+'use client'
+
 import React, { useEffect } from 'react'
 import { useAppSelector } from '@/util/redux/Hooks'
 import { selectTranslations } from '@/features/i18n/TranslatorSlice'
@@ -22,13 +23,10 @@ export default function AnimatedTitle() {
         }
 
         async function executeTextAnimations() {
-            await textAnimation('Maël Feri')
-            await textAnimation(getCurrentLocale().strings['home.title.animation.1'], 500, 100, 50)
-            await textAnimation(getCurrentLocale().strings['home.title.animation.2'], 200, 100, 50)
-            await textAnimation(getCurrentLocale().strings['home.title.animation.3'], 200, 100, 50)
-            await textAnimation(getCurrentLocale().strings['home.title.animation.4'], 500, 100, 50)
-            await textAnimation(':)', 200, 100, 100)
-
+            await textAnimation(getCurrentLocale().strings['home.title.animation.1'], 2000, 80, 40)
+            await textAnimation(getCurrentLocale().strings['home.title.animation.2'], 2000, 80, 40)
+            await textAnimation(getCurrentLocale().strings['home.title.animation.3'], 2000, 80, 40)
+            await textAnimation(getCurrentLocale().strings['home.title.animation.4'], 2000, 80, 40)
             await executeTextAnimations()
         }
 
@@ -36,13 +34,9 @@ export default function AnimatedTitle() {
     }, [])
 
     return (
-        <div className="relative w-full max-w-4xl">
-            <div className="min-h-[5.4em] md:min-h-[6em] flex items-center">
-                <h1 className={`md:text-[6em] text-[4.5em] font-bold leading-[0.9em] ${passionOne.className} bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 dark:from-blue-400 dark:via-purple-500 dark:to-pink-500 bg-clip-text text-transparent animate-gradient bg-300% tracking-tight`}>
-                    {titleValue || '\u00A0'}
-                </h1>
-            </div>
-            <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 rounded-lg blur-2xl opacity-10 dark:opacity-10 pointer-events-none"></div>
-        </div>
+        <span className='font-mono text-sm md:text-base text-gray-400 dark:text-gray-500 tracking-wide'>
+            {titleValue || ' '}
+            <span className='animate-pulse'>_</span>
+        </span>
     )
 }

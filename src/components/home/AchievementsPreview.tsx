@@ -1,149 +1,206 @@
 'use client'
 
 import React from 'react'
-import { Card, Badge } from 'flowbite-react'
-import { HiStar, HiCalendar, HiExternalLink, HiCode, HiUserGroup } from 'react-icons/hi'
+import { HiStar, HiExternalLink, HiArrowRight, HiCode } from 'react-icons/hi'
+import TechOverflowBadge from '@/components/TechOverflowBadge'
 import { sortedAchievements, formatDateRange } from '@/util/data/Achievements'
-import { passionOne } from '@/app/fonts'
 import Link from 'next/link'
+import SectionHeader from '@/components/SectionHeader'
 
 interface AchievementsPreviewProps {
     title: string
     subtitle?: string
 }
 
+const categoryLabel = (c: string) =>
+    c === 'personal' ? 'Solo' : c === 'team' ? 'Équipe' : c === 'academic' ? 'Académique' : 'Autre'
+
+const typeLabel = (t: string) =>
+    t === 'project' ? 'Projet' : t === 'competition' ? 'Compétition' : t === 'recognition' ? 'Reconnaissance' : 'Contribution'
+
 const AchievementsPreview: React.FC<AchievementsPreviewProps> = ({ title, subtitle }) => {
-    const achievementTypeColors = {
-        project: 'success',
-        competition: 'warning',
-        recognition: 'purple',
-        contribution: 'info'
-    } as const
-
-    const achievementTypeLabels = {
-        project: 'Projet',
-        competition: 'Compétition',
-        recognition: 'Reconnaissance',
-        contribution: 'Contribution'
-    }
-
-    const previewAchievements = sortedAchievements.slice(0, 3)
+    const [hero, ...rest] = sortedAchievements
+    const previews = rest.slice(0, 2)
 
     return (
         <section className='w-full bg-gray-100 dark:bg-[unset]'>
             <div className='max-w-7xl mx-auto px-4 py-16'>
-                <div className='text-center mb-12'>
-                    <h2 className={`text-[3.8em] md:text-[4.5em] ${passionOne.className} text-gradient bg-[linear-gradient(45deg,#0688fb_0%,#ac07f7_100%)] dark:bg-[linear-gradient(45deg,#2b9cff_0%,#ac07f7_100%)] font-semibold`}>
-                        {title}
-                    </h2>
-                    {subtitle && (
-                        <p className='pt-5 tracking-[.054em] max-w-4xl mx-auto text-gray-800 dark:text-white font-normal text-[1.35rem] md:text-[1.5rem] leading-[1.2em]'>
-                            {subtitle}
-                        </p>
-                    )}
-                </div>
+                <SectionHeader title={title} subtitle={subtitle} eyebrow='Portfolio & Projets' />
 
-            <div className='grid md:grid-cols-3 gap-6'>
-                {previewAchievements.map((achievement, index) => (
-                    <div key={index} className='group bg-white dark:bg-gray-800/50 rounded-xl p-6 border border-gray-200 dark:border-gray-700/50 shadow-sm hover:shadow-md hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-300'>
-                        {/* Header */}
-                        <div className='flex items-start justify-between mb-4'>
-                            <div className='flex-1'>
-                                <div className='flex items-center gap-2 mb-3'>
-                                    {achievement.starred && (
-                                        <span className='inline-flex items-center gap-1 text-xs font-medium px-2.5 py-1 rounded-full bg-yellow-100 dark:bg-yellow-900/30 text-yellow-600 dark:text-yellow-400'>
-                                            <HiStar className='w-3 h-3 shrink-0' />
-                                            Mis en avant
-                                        </span>
-                                    )}
-                                    <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${
-                                        achievement.type === 'project' ? 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400' :
-                                        achievement.type === 'competition' ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400' :
-                                        achievement.type === 'recognition' ? 'bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400' :
-                                        'bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400'
-                                    }`}>
-                                        {achievement.type === 'project' ? 'Projet' : achievement.type === 'competition' ? 'Compétition' : achievement.type === 'recognition' ? 'Reconnaissance' : 'Contribution'}
-                                    </span>
-                                    <span className='text-xs font-medium px-2.5 py-1 rounded-full bg-gray-100 dark:bg-gray-700/50 text-gray-600 dark:text-gray-400'>
-                                        {achievement.category === 'personal' ? 'Solo' :
-                                         achievement.category === 'team' ? 'Équipe' :
-                                         achievement.category === 'academic' ? 'Académique' : 'Autre'}
-                                    </span>
-                                </div>
-                                <h3 className='text-xl font-bold text-gray-900 dark:text-white mb-1 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors'>
-                                    {achievement.title}
-                                </h3>
-                                <span className='text-sm font-medium text-gray-600 dark:text-gray-400'>
-                                    {formatDateRange(achievement)}
+                {/* Hero card — full width, horizontal (desktop only) */}
+                <div className='hidden md:block relative rounded-2xl border border-purple-200 dark:border-purple-500/20 bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-950/50 dark:to-blue-950/40 overflow-hidden mb-4 group hover:border-purple-300 dark:hover:border-purple-400/40 transition-all duration-500'
+                    style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.04) 1px, transparent 1px)', backgroundSize: '28px 28px' }}>
+
+                    {/* Glows */}
+                    <div className='absolute -bottom-20 -left-20 w-72 h-72 bg-purple-400/20 dark:bg-purple-600/10 rounded-full blur-3xl group-hover:bg-purple-400/30 dark:group-hover:bg-purple-600/20 transition-all duration-700 pointer-events-none' />
+                    <div className='absolute -top-10 right-32 w-48 h-48 bg-blue-400/20 dark:bg-blue-600/10 rounded-full blur-3xl group-hover:bg-blue-400/30 dark:group-hover:bg-blue-600/20 transition-all duration-700 pointer-events-none' />
+
+                    <div className='relative flex flex-col md:flex-row gap-8 p-8'>
+                        {/* Left — info */}
+                        <div className='flex-1 min-w-0'>
+                            <div className='flex flex-wrap items-center gap-2 mb-5'>
+                                <span className='text-xs font-medium px-2.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-700 dark:text-emerald-300'>
+                                    {typeLabel(hero.type)}
                                 </span>
+                                <span className='text-xs font-medium px-2.5 py-1 rounded-full bg-gray-200/80 dark:bg-white/5 border border-gray-300/80 dark:border-white/10 text-gray-600 dark:text-gray-400'>
+                                    {categoryLabel(hero.category)}
+                                </span>
+                                <span className='text-xs text-gray-500 ml-auto'>{formatDateRange(hero)}</span>
                             </div>
-                            {achievement.link && (
-                                <a href={achievement.link} target='_blank' rel='noopener noreferrer' className='p-2 text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-700/50 rounded-lg transition-all'>
+
+                            <h3 className='text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-4 leading-tight'>
+                                {hero.title}
+                            </h3>
+
+                            <p className='text-gray-600 dark:text-gray-300 leading-relaxed mb-6 max-w-xl'>
+                                {hero.description}
+                            </p>
+
+                            {hero.link && (
+                                <a
+                                    href={hero.link}
+                                    target='_blank'
+                                    rel='noopener noreferrer'
+                                    className='inline-flex items-center gap-2 text-sm font-semibold text-purple-600 dark:text-purple-400 hover:text-purple-500 dark:hover:text-purple-300 transition-colors duration-200'
+                                >
+                                    Voir le projet
                                     <HiExternalLink className='w-4 h-4' />
                                 </a>
                             )}
                         </div>
 
-                        {/* Description */}
-                        <p className='text-gray-700 dark:text-gray-300 text-base leading-relaxed mb-5'>
-                            {achievement.description}
-                        </p>
-
-                        {/* Technologies - preview */}
-                        {achievement.technologies && achievement.technologies.length > 0 && (
-                            <div className='mb-4'>
-                                <div className='flex items-center gap-1.5 mb-2 text-gray-600 dark:text-gray-400'>
+                        {/* Right — tech stack */}
+                        {hero.technologies && (
+                            <div className='md:w-56 shrink-0 self-start pt-1'>
+                                <div className='flex items-center gap-1.5 mb-3 text-gray-400 dark:text-gray-500'>
                                     <HiCode className='w-3.5 h-3.5' />
-                                    <span className='text-xs font-semibold uppercase tracking-wider'>Technologies</span>
+                                    <span className='text-xs font-semibold uppercase tracking-wider'>Stack</span>
                                 </div>
-                                <div className='flex flex-wrap gap-1.5'>
-                                    {achievement.technologies.slice(0, 3).map((tech, idx) => (
-                                        <span key={idx} className='text-sm px-2.5 py-1 rounded-full bg-blue-50 dark:bg-blue-900/20 text-blue-600 dark:text-blue-400 font-medium'>
+                                <div className='flex flex-wrap gap-2'>
+                                    {hero.technologies.map((tech, i) => (
+                                        <span key={i} className='text-xs px-3 py-1.5 rounded-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300 font-medium'>
                                             {tech.displayName}
                                         </span>
                                     ))}
-                                    {achievement.technologies.length > 3 && (
-                                        <span className='text-sm px-2.5 py-1 rounded-full bg-gray-100 dark:bg-gray-700/50 text-gray-600 dark:text-gray-400'>
-                                            +{achievement.technologies.length - 3}
-                                        </span>
-                                    )}
-                                </div>
-                            </div>
-                        )}
-
-                        {/* Collaborateurs - preview */}
-                        {achievement.persons && achievement.persons.length > 0 && (
-                            <div className='mb-4'>
-                                <div className='flex items-center gap-1.5 mb-2 text-gray-600 dark:text-gray-400'>
-                                    <HiUserGroup className='w-3.5 h-3.5' />
-                                    <span className='text-xs font-semibold uppercase tracking-wider'>Avec</span>
-                                </div>
-                                <div className='flex flex-wrap gap-1.5'>
-                                    {achievement.persons.slice(0, 2).map((person, idx) => (
-                                        <span key={idx} className='text-sm px-2.5 py-1 rounded-full bg-purple-50 dark:bg-purple-900/20 text-purple-600 dark:text-purple-400 font-medium'>
-                                            {person.name}
-                                        </span>
-                                    ))}
-                                    {achievement.persons.length > 2 && (
-                                        <span className='text-sm px-2.5 py-1 rounded-full bg-gray-100 dark:bg-gray-700/50 text-gray-600 dark:text-gray-400'>
-                                            +{achievement.persons.length - 2}
-                                        </span>
-                                    )}
                                 </div>
                             </div>
                         )}
                     </div>
-                ))}
-            </div>
+                </div>
 
-            <div className='text-center mt-8'>
-                <Link href='/achievements' className='inline-flex items-center px-6 py-3 text-sm font-medium text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 shadow-lg hover:shadow-xl'>
-                    Voir toutes mes réalisations
-                    <svg className='w-4 h-4 ml-2' fill='none' stroke='currentColor' viewBox='0 0 24 24'>
-                        <path strokeLinecap='round' strokeLinejoin='round' strokeWidth={2} d='M9 5l7 7-7 7' />
-                    </svg>
-                </Link>
-            </div>
+                {/* Desktop bottom row — 2 compact cards + CTA */}
+                <div className='hidden md:grid md:grid-cols-3 gap-4'>
+                    {previews.map((achievement, i) => (
+                        <div key={i} className='rounded-2xl p-5 border border-gray-200 dark:border-gray-700/50 bg-white dark:bg-gray-800/50 hover:border-gray-300 dark:hover:border-gray-600 hover:shadow-md transition-all duration-300 group'>
+                            <div className='flex items-center gap-2 mb-3'>
+                                <span className={`text-xs font-medium px-2.5 py-1 rounded-full border ${
+                                    achievement.type === 'project' ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-700 dark:text-emerald-300' :
+                                    achievement.type === 'contribution' ? 'bg-blue-500/15 border-blue-500/30 text-blue-700 dark:text-blue-300' :
+                                    'bg-amber-500/15 border-amber-500/30 text-amber-700 dark:text-amber-300'
+                                }`}>
+                                    {typeLabel(achievement.type)}
+                                </span>
+                                <span className='text-xs text-gray-400 ml-auto'>{formatDateRange(achievement)}</span>
+                            </div>
+                            <h3 className='text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors'>
+                                {achievement.title}
+                            </h3>
+                            <p className='text-sm text-gray-600 dark:text-gray-400 line-clamp-2 mb-3'>
+                                {achievement.description}
+                            </p>
+                            {achievement.technologies && (
+                                <div className='flex flex-wrap gap-1.5'>
+                                    {achievement.technologies.slice(0, 3).map((tech, idx) => (
+                                        <span key={idx} className='text-xs px-2 py-0.5 rounded-full bg-blue-500/10 border border-blue-500/25 text-blue-600 dark:text-blue-300'>
+                                            {tech.displayName}
+                                        </span>
+                                    ))}
+                                    {achievement.technologies.length > 3 && (
+                                        <TechOverflowBadge techs={achievement.technologies.slice(3).map(t => t.displayName)} />
+                                    )}
+                                </div>
+                            )}
+                        </div>
+                    ))}
+                    <Link
+                        href='/achievements'
+                        className='group flex items-center justify-between rounded-2xl p-5 bg-white dark:bg-gray-900 border-2 border-gray-900 dark:border-white/20 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200'
+                    >
+                        <div>
+                            <p className='text-gray-900/40 dark:text-white/40 text-xs font-semibold uppercase tracking-widest mb-0.5'>{sortedAchievements.length} projets</p>
+                            <p className='text-gray-900 dark:text-white font-bold text-lg leading-tight'>Voir toutes<br />mes projets</p>
+                        </div>
+                        <div className='w-10 h-10 rounded-full bg-gray-900/10 dark:bg-white/10 flex items-center justify-center group-hover:bg-gray-900/20 dark:group-hover:bg-white/20 transition-colors duration-200 shrink-0'>
+                            <HiArrowRight className='w-5 h-5 text-gray-900 dark:text-white group-hover:translate-x-0.5 transition-transform duration-200' />
+                        </div>
+                    </Link>
+                </div>
+
+                {/* Mobile carousel — hero + previews + CTA */}
+                <div className='md:hidden flex gap-4 overflow-x-auto snap-x snap-mandatory scrollbar-hide -mx-4 px-4 pb-2'>
+                    {/* Hero — same style as desktop */}
+                    <div className='snap-center shrink-0 w-[82vw] relative rounded-2xl border border-purple-200 dark:border-purple-500/20 bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-950/50 dark:to-blue-950/40 overflow-hidden group'
+                        style={{ backgroundImage: 'radial-gradient(circle, rgba(0,0,0,0.04) 1px, transparent 1px)', backgroundSize: '28px 28px' }}>
+                        <div className='absolute -bottom-20 -left-20 w-72 h-72 bg-purple-400/20 dark:bg-purple-600/10 rounded-full blur-3xl pointer-events-none' />
+                        <div className='absolute -top-10 right-32 w-48 h-48 bg-blue-400/20 dark:bg-blue-600/10 rounded-full blur-3xl pointer-events-none' />
+                        <div className='relative p-8'>
+                            <div className='flex flex-wrap items-center gap-2 mb-5'>
+                                <span className='text-xs font-medium px-2.5 py-1 rounded-full bg-emerald-500/15 border border-emerald-500/30 text-emerald-700 dark:text-emerald-300'>{typeLabel(hero.type)}</span>
+                                <span className='text-xs font-medium px-2.5 py-1 rounded-full bg-gray-200/80 dark:bg-white/5 border border-gray-300/80 dark:border-white/10 text-gray-600 dark:text-gray-400'>{categoryLabel(hero.category)}</span>
+                                <span className='text-xs text-gray-500 ml-auto'>{formatDateRange(hero)}</span>
+                            </div>
+                            <h3 className='text-4xl font-black text-gray-900 dark:text-white mb-4 leading-tight'>{hero.title}</h3>
+                            <p className='text-gray-600 dark:text-gray-300 leading-relaxed mb-6'>{hero.description}</p>
+                            {hero.link && (
+                                <a href={hero.link} target='_blank' rel='noopener noreferrer' className='inline-flex items-center gap-2 text-sm font-semibold text-purple-600 dark:text-purple-400 hover:text-purple-500 dark:hover:text-purple-300 transition-colors mb-6'>
+                                    Voir le projet <HiExternalLink className='w-4 h-4' />
+                                </a>
+                            )}
+                            {hero.technologies && (
+                                <div className='flex flex-wrap gap-2'>
+                                    {hero.technologies.map((tech, i) => (
+                                        <span key={i} className='text-xs px-3 py-1.5 rounded-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300 font-medium'>{tech.displayName}</span>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                    {/* Preview cards */}
+                    {previews.map((achievement, i) => (
+                        <div key={i} className='snap-center shrink-0 w-[82vw] rounded-2xl p-8 border border-gray-200 dark:border-gray-700/50 bg-white dark:bg-gray-800/50'>
+                            <div className='flex items-center gap-2 mb-5'>
+                                <span className={`text-xs font-medium px-2.5 py-1 rounded-full border ${
+                                    achievement.type === 'project' ? 'bg-emerald-500/15 border-emerald-500/30 text-emerald-700 dark:text-emerald-300' :
+                                    'bg-blue-500/15 border-blue-500/30 text-blue-700 dark:text-blue-300'
+                                }`}>{typeLabel(achievement.type)}</span>
+                                <span className='text-xs font-medium px-2.5 py-1 rounded-full bg-gray-100 dark:bg-gray-700/50 text-gray-500'>{categoryLabel(achievement.category)}</span>
+                                <span className='text-xs text-gray-400 ml-auto'>{formatDateRange(achievement)}</span>
+                            </div>
+                            <h3 className='text-4xl font-black text-gray-900 dark:text-white mb-4 leading-tight'>{achievement.title}</h3>
+                            <p className='text-gray-600 dark:text-gray-400 leading-relaxed mb-6'>{achievement.description}</p>
+                            {achievement.technologies && (
+                                <div className='flex flex-wrap gap-2'>
+                                    {achievement.technologies.slice(0, 5).map((tech, idx) => (
+                                        <span key={idx} className='text-xs px-3 py-1.5 rounded-full bg-blue-50 dark:bg-blue-500/15 text-blue-600 dark:text-blue-300 font-medium'>{tech.displayName}</span>
+                                    ))}
+                                    {achievement.technologies.length > 5 && (
+                                        <span className='text-xs px-3 py-1.5 rounded-full bg-gray-100 dark:bg-gray-700/50 text-gray-500'>+{achievement.technologies.length - 5}</span>
+                                    )}
+                                </div>
+                            )}
+                        </div>
+                    ))}
+                    {/* CTA */}
+                    <Link href='/achievements' className='snap-center shrink-0 w-[82vw] group flex items-center justify-between rounded-2xl p-6 bg-white dark:bg-gray-900 border-2 border-gray-900 dark:border-white/20 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200'>
+                        <div>
+                            <p className='text-gray-900/40 dark:text-white/40 text-xs font-semibold uppercase tracking-widest mb-0.5'>{sortedAchievements.length} projets</p>
+                            <p className='text-gray-900 dark:text-white font-bold text-lg leading-tight'>Voir toutes<br />mes projets</p>
+                        </div>
+                        <div className='w-10 h-10 shrink-0 rounded-full bg-gray-900/10 dark:bg-white/10 flex items-center justify-center'>
+                            <HiArrowRight className='w-5 h-5 text-gray-900 dark:text-white' />
+                        </div>
+                    </Link>
+                </div>
             </div>
         </section>
     )

@@ -8,121 +8,94 @@ import ThemeSwitcher from '@/components/ThemeSwitcher'
 import { useAppSelector } from '@/util/redux/Hooks'
 import { selectTranslations, StringKey } from '@/features/i18n/TranslatorSlice'
 import LanguageSelector from '@/components/i18n/LanguageSelector'
-import { HiMenu, HiX, HiDocumentDownload } from 'react-icons/hi'
-
-const CVButton = ({ strings, className }: { strings: Record<StringKey, string>, className?: string }) => {
-    return (
-        <a 
-            href='/cv.pdf' 
-            target='_blank'
-            className={`${className ?? ''} inline-flex items-center px-5 py-2.5 text-sm font-semibold text-white bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 hover:shadow-lg`}
-        >
-            <HiDocumentDownload className="w-4 h-4 mr-2" />
-            {strings['header.cv']}
-        </a>
-    )
-}
+import { HiMenu, HiX } from 'react-icons/hi'
+import { passionOne } from '@/app/fonts'
 
 const Header = () => {
     const strings = useAppSelector(selectTranslations)
     const [isNavbarOpen, setIsNavbarOpen] = useState(false)
 
-    const toggleNavbar = () => {
-        setIsNavbarOpen(!isNavbarOpen)
-    }
-
-    const closeNavBar = () => {
-        setIsNavbarOpen(false)
-    }
-
     const navItems = [
         { href: '/', label: strings['header.home'] },
-        { href: '/#myself', label: strings['header.about'] },
         { href: '/experience', label: strings['header.experience'] },
-        { href: '/achievements', label: 'Réalisations' },
+        { href: '/achievements', label: 'Projets' },
         { href: '/#contact', label: strings['header.contact'] },
     ]
 
     return (
-        <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl border-b border-gray-200/10 dark:border-gray-700/10 shadow-sm w-full">
-            <div className="w-full px-4 sm:px-6 lg:px-8">
-                <div className="flex justify-between items-center h-20">
+        <header className='fixed top-0 left-0 right-0 z-50 bg-white/90 dark:bg-gray-950/90 backdrop-blur-md border-b border-gray-100 dark:border-gray-800/60 w-full'>
+            <div className='max-w-7xl mx-auto px-6'>
+                <div className='relative flex items-center h-16'>
+
                     {/* Logo */}
-                    <Link href="/" className="flex items-center space-x-3 group">
-                        <div className="p-2 transition-all duration-300 group-hover:scale-110">
-                            <Image src={logoImage} alt="Maël Feri" className="w-8 h-8" />
-                        </div>
-                        <div className="hidden sm:block">
-                            <span className="text-xl font-bold text-gray-900 dark:text-white tracking-tight">
-                                Maël Feri
-                            </span>
-                            <p className="text-xs text-gray-600 dark:text-gray-400 font-medium">
-                                Développeur Full-Stack & DevOps
-                            </p>
-                        </div>
+                    <Link href='/' className='shrink-0 flex items-center gap-2.5'>
+                        <Image src={logoImage} alt='Maël Feri' className='w-7 h-7' />
+                        <span className={`${passionOne.className} text-lg font-black uppercase tracking-tight text-gray-900 dark:text-white`}>
+                            Maël Feri
+                        </span>
                     </Link>
 
-                    {/* Desktop Navigation */}
-                    <div className="hidden lg:flex items-center">
-                        <div className="flex items-center space-x-1 px-3 py-2 bg-gray-50/50 dark:bg-gray-800/50 rounded-xl backdrop-blur-sm">
-                            {navItems.map((item, index) => (
-                                <Link
-                                    key={index}
-                                    href={item.href}
-                                    className="relative px-4 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 rounded-lg transition-all duration-300 group"
-                                >
-                                    <span className="relative z-10">{item.label}</span>
-                                    <div className="absolute inset-0 bg-white/80 dark:bg-gray-700/50 rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-sm"></div>
-                                </Link>
-                            ))}
-                        </div>
-                    </div>
+                    {/* Desktop nav — truly centered */}
+                    <nav className='hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-8'>
+                        {navItems.map((item, i) => (
+                            <Link
+                                key={i}
+                                href={item.href}
+                                className='text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200'
+                            >
+                                {item.label}
+                            </Link>
+                        ))}
+                    </nav>
 
-                    {/* Desktop Actions */}
-                    <div className="hidden md:flex items-center space-x-3">
-                        <CVButton strings={strings} />
-                        <div className="flex items-center space-x-2 p-1 bg-gray-50/50 dark:bg-gray-800/50 rounded-xl backdrop-blur-sm">
-                            <LanguageSelector />
-                            <ThemeSwitcher />
-                        </div>
-                    </div>
-
-                    {/* Mobile menu button */}
-                    <div className="flex items-center space-x-2 lg:hidden">
-                        <div className="flex items-center space-x-1 p-1 bg-gray-50/50 dark:bg-gray-800/50 rounded-lg">
-                            <LanguageSelector />
-                            <ThemeSwitcher />
-                        </div>
-                        <button
-                            onClick={toggleNavbar}
-                            className="p-2.5 text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl transition-all duration-300"
+                    {/* Desktop actions */}
+                    <div className='hidden md:flex items-center gap-3 ml-auto'>
+                        <LanguageSelector />
+                        <ThemeSwitcher />
+                        <a
+                            href='/cv.pdf'
+                            target='_blank'
+                            className='px-5 py-2 rounded-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-sm font-semibold hover:opacity-80 transition-opacity duration-200'
                         >
-                            {isNavbarOpen ? (
-                                <HiX className="w-6 h-6" />
-                            ) : (
-                                <HiMenu className="w-6 h-6" />
-                            )}
+                            {strings['header.cv']}
+                        </a>
+                    </div>
+
+                    {/* Mobile controls */}
+                    <div className='flex items-center gap-1 lg:hidden ml-auto'>
+                        <LanguageSelector />
+                        <ThemeSwitcher />
+                        <button
+                            onClick={() => setIsNavbarOpen(v => !v)}
+                            className='p-2.5 text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white transition-colors duration-200'
+                            aria-label='Toggle menu'
+                        >
+                            {isNavbarOpen ? <HiX className='w-5 h-5' /> : <HiMenu className='w-5 h-5' />}
                         </button>
                     </div>
                 </div>
 
-                {/* Mobile Navigation */}
+                {/* Mobile nav */}
                 {isNavbarOpen && (
-                    <div className="lg:hidden py-6 border-t border-gray-200/20 dark:border-gray-700/20">
-                        <div className="space-y-3">
-                            {navItems.map((item, index) => (
-                                <Link
-                                    key={index}
-                                    href={item.href}
-                                    onClick={closeNavBar}
-                                    className="block px-4 py-3 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 hover:bg-gray-100/70 dark:hover:bg-gray-800/70 rounded-xl transition-all duration-300 mx-2"
-                                >
-                                    {item.label}
-                                </Link>
-                            ))}
-                            <div className="pt-6 mx-2 border-t border-gray-200/20 dark:border-gray-700/20">
-                                <CVButton strings={strings} className="w-full justify-center" />
-                            </div>
+                    <div className='lg:hidden border-t border-gray-100 dark:border-gray-800/60 py-6 space-y-1'>
+                        {navItems.map((item, i) => (
+                            <Link
+                                key={i}
+                                href={item.href}
+                                onClick={() => setIsNavbarOpen(false)}
+                                className='block px-2 py-3 text-base font-medium text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors duration-200'
+                            >
+                                {item.label}
+                            </Link>
+                        ))}
+                        <div className='pt-4 border-t border-gray-100 dark:border-gray-800/60'>
+                            <a
+                                href='/cv.pdf'
+                                target='_blank'
+                                className='inline-flex px-6 py-2.5 rounded-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-sm font-semibold hover:opacity-80 transition-opacity duration-200'
+                            >
+                                {strings['header.cv']}
+                            </a>
                         </div>
                     </div>
                 )}

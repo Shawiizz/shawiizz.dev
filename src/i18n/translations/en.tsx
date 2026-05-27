@@ -68,7 +68,7 @@ const enTranslation: PartialLocaleState = {
         'tech.type.software': 'Software',
         'tech.type.hardware': 'Hardware',
         'tech.type.other': 'Other',
-        'home.section.tech.title': 'Technologies & Skills',
+        'home.section.tech.title': 'Technos',
         'home.section.tech.text': 'Discover the technologies I use daily and the tools that accompany me in my projects.',
         'pagination.previous': 'Previous',
         'pagination.next': 'Next',
@@ -122,6 +122,42 @@ const enTranslation: PartialLocaleState = {
     'achievements.modal.header.fallback': 'Competency',
     'achievements.modal.linkedto': 'Linked to:',
     'achievements.modal.reference': 'BUT CS reference — synthetic overview.',
+    // Hero
+    'home.hero.cta.discover': 'Discover my profile',
+    'home.hero.cta.achievements': 'My achievements',
+    'hero.marquee.engineer': 'Engineer',
+    // About section
+    'home.about.eyebrow': 'About',
+    'home.about.stat.age.label': 'y/o',
+    'home.about.stat.code.sub': 'Started coding',
+    'home.about.stat.school.sub': 'Computer engineering',
+    'home.about.link.career': 'Professional journey',
+    'home.about.link.education': 'Education',
+    // Tech section
+    'home.section.tech.eyebrow': 'Tech stack',
+    'home.section.tech.mastered': 'Mastered',
+    'home.section.tech.practiced': 'Practiced',
+    // Contact
+    'contact.eyebrow': 'Let\'s connect',
+    // Experience page
+    'experience.page.eyebrow': 'Professional journey',
+    'experience.page.status.active': 'Currently employed',
+    'experience.formation.eyebrow': 'Education',
+    'experience.formation.status.completed': 'Completed',
+    'experience.formation.status.inprogress': 'In progress',
+    'experience.formation.status.planned': 'Planned',
+    // Achievements page
+    'achievements.page.eyebrow': 'Portfolio & Projects',
+    'achievements.page.tab.all': 'All',
+    'achievements.page.empty': 'No achievements in this category.',
+    'achievements.page.opensource.eyebrow': 'Open source',
+    'achievements.page.opensource.text': 'More projects available on GitHub',
+    // Preview sections
+    'home.preview.exp.eyebrow': 'Professional journey',
+    'home.preview.exp.status': 'In progress',
+    'home.preview.exp.count': '% experiences',
+    'home.preview.ach.count': '% achievements',
+    'home.preview.ach.cta': 'View all my achievements',
     }
 }
 

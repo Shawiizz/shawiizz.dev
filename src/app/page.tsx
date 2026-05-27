@@ -3,177 +3,159 @@
 import { passionOne, poppins } from '@/app/fonts'
 import Link from 'next/link'
 import React from 'react'
-import AnimatedTitle from '@/components/home/AnimatedTitle'
 import Footer from '@/components/Footer'
 import { useAppSelector } from '@/util/redux/Hooks'
 import { selectTranslations } from '@/features/i18n/TranslatorSlice'
 import { getLocaleStringAsArgs } from '@/util/LocaleHelper'
+import { Profile, getAge } from '@/util/data/Profile'
 import Technologies from '@/components/home/Technologies'
 import ExperiencePreview from '@/components/home/ExperiencePreview'
 import AchievementsPreview from '@/components/home/AchievementsPreview'
 import EnhancedContact from '@/components/home/EnhancedContact'
+import SectionHeader from '@/components/SectionHeader'
+import HeroMarquee from '@/components/home/HeroMarquee'
 
 export default function Home() {
     const strings = useAppSelector(selectTranslations)
+    const age = getAge()
 
     return (
-        <main className='flex min-h-screen flex-col items-center justify-between'>
-            <section className='relative flex items-center min-h-screen overflow-hidden w-full'>
-                {/* Background moderne et minimaliste */}
-                <div className="absolute inset-0 bg-gradient-to-br from-gray-100 via-white to-gray-50 dark:from-slate-900 dark:via-gray-900 dark:to-gray-900/80"></div>
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-blue-200/30 via-transparent to-transparent dark:from-blue-900/20 dark:via-transparent dark:to-transparent"></div>
-                
-                {/* Grille subtile en arrière-plan */}
-                <div className="absolute inset-0 opacity-5 dark:opacity-5">
-                    <div className="absolute inset-0" style={{
-                        backgroundImage: `linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px), 
-                                         linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px)`,
-                        backgroundSize: '50px 50px'
-                    }}></div>
+        <main className='flex min-h-screen flex-col items-center'>
+
+            {/* ── HERO ─────────────────────────────────────────────── */}
+            <section className='relative flex flex-col items-center justify-center min-h-screen w-full overflow-hidden'>
+                {/* Background */}
+                <div className='absolute inset-0 bg-white dark:bg-gray-950' />
+                <div className='absolute w-[700px] h-[700px] rounded-full blur-[140px] opacity-25 dark:opacity-15 -top-40 -right-40 bg-blue-100 dark:bg-blue-900 pointer-events-none' />
+                <div className='absolute w-[500px] h-[500px] rounded-full blur-[120px] opacity-20 dark:opacity-10 -bottom-20 -left-20 bg-purple-100 dark:bg-purple-900 pointer-events-none' />
+
+                <div className='relative z-10 text-center px-6 w-full max-w-7xl mx-auto'>
+                    {/* Name */}
+                    <h1 className={`${passionOne.className} font-black uppercase leading-none tracking-tight select-none`}>
+                        <span className='block sm:inline text-[28vw] sm:text-[17vw] md:text-[14vw] lg:text-[12vw] text-gray-900 dark:text-white'>MAËL</span>
+                        <span className='hidden sm:inline'> </span>
+                        <span className='block sm:inline text-[28vw] sm:text-[17vw] md:text-[14vw] lg:text-[12vw] text-outlined'>FERI</span>
+                    </h1>
+
                 </div>
-                
-                {/* Contenu principal aligné à gauche */}
-                <div className="relative z-10 w-full px-6 lg:px-12">
-                    <div className="grid lg:grid-cols-2 gap-16 items-center lg:items-start">
-                        
-                        {/* Colonne gauche - Titre et description */}
-                        <div className="space-y-8 text-center lg:text-left">
-                            <div className="space-y-6">
-                                <AnimatedTitle/>
-                                <div className="space-y-4">
-                                    <h2 className={`text-gray-600 dark:text-gray-300 md:text-2xl text-xl font-light tracking-[.3em] ${poppins.className}`}>
-                                        {strings['home.subtitle']}
-                                    </h2>
-                                    <p className="text-gray-500 dark:text-gray-400 md:text-lg text-base leading-relaxed">
-                                        Étudiant en informatique passionné par le développement web, mobile et DevOps.
-                                    </p>
-                                </div>
-                            </div>
-                            
-                            {/* Actions */}
-                            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                                <Link 
-                                    href="#myself" 
-                                    className="group inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 transform hover:scale-105 hover:shadow-2xl relative overflow-hidden"
-                                >
-                                    <span className="relative z-10">Découvrir mon profil</span>
-                                    <div className="absolute inset-0 bg-gradient-to-r from-blue-700 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                </Link>
-                                <Link 
-                                    href="/achievements" 
-                                    className="group inline-flex items-center justify-center px-8 py-4 border-2 border-gray-300 dark:border-white/20 text-gray-700 dark:text-white font-semibold rounded-lg hover:bg-gray-100 dark:hover:bg-white/10 hover:border-gray-400 dark:hover:border-white/40 transition-all duration-300 backdrop-blur-sm relative overflow-hidden"
-                                >
-                                    <span className="relative z-10">Mes réalisations</span>
-                                    <div className="absolute inset-0 bg-gray-100 dark:bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                                </Link>
-                            </div>
-                        </div>
-                                          
-                    </div>
+
+                {/* Ghost marquee — full bleed, below name */}
+                <div className='relative z-10 w-full mt-8'>
+                    <HeroMarquee />
                 </div>
-                
-                {/* Indicateur de scroll moderne */}
-                <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center space-y-3">
-                    <div className="flex space-x-1">
-                        <div className="w-1 h-8 bg-gray-400/40 dark:bg-white/20 rounded-full"></div>
-                        <div className="w-1 h-8 bg-gray-500/60 dark:bg-white/40 rounded-full animate-pulse delay-200"></div>
-                        <div className="w-1 h-8 bg-gray-400/40 dark:bg-white/20 rounded-full"></div>
-                    </div>
-                    <Link 
-                        href="#myself" 
-                        className="text-gray-500 dark:text-white/60 text-xs font-medium tracking-wider hover:text-gray-700 dark:hover:text-white/80 transition-colors duration-300"
-                    >
-                        DÉFILER
-                    </Link>
-                </div>
-            </section>
-            <section
-                className="w-full bg-gradient-to-b from-gray-100/60 via-gray-50/40 to-white/40 dark:from-gray-900/80 dark:via-gray-800/60 dark:to-gray-800/60"
-                id="myself">
-                <div className="max-w-6xl mx-auto px-6 py-20 md:py-28">
-                    <div className="space-y-8">
-                        <div className="space-y-4">
-                            <h2 className={`text-4xl md:text-5xl ${passionOne.className} font-bold text-gray-900 dark:text-white`}>
-                                {strings['home.section.1.title']}
-                            </h2>
-                            <div className="w-16 h-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-full"></div>
-                        </div>
-                        
-                        <p className={`text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed max-w-4xl ${poppins.className}`}>
-                            {getLocaleStringAsArgs(strings['home.section.1.text'])[0]}{new Date().getFullYear() - 2004}{getLocaleStringAsArgs(strings['home.section.1.text'])[2]}
-                        </p>
-                        
-                        <Link 
-                            href="/experience" 
-                            className="inline-flex items-center text-blue-600 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-medium transition-colors group"
+
+                <div className='relative z-10 text-center px-6 w-full max-w-7xl mx-auto mt-14'>
+                    {/* CTAs */}
+                    <div className='flex flex-col sm:flex-row gap-3 justify-center'>
+                        <Link
+                            href='#about'
+                            className='px-7 py-3 rounded-full bg-gray-900 dark:bg-white text-white dark:text-gray-900 text-sm font-semibold hover:opacity-85 transition-opacity'
                         >
-                            Découvrir mon parcours
-                            <svg className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                            </svg>
+                            {strings['home.hero.cta.discover']}
                         </Link>
+                        <Link
+                            href='/achievements'
+                            className='px-7 py-3 rounded-full border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 text-sm font-semibold hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors'
+                        >
+                            {strings['home.hero.cta.achievements']}
+                        </Link>
+                    </div>
+                </div>
+
+                {/* Scroll indicator */}
+                <div className='absolute bottom-8 left-1/2 -translate-x-1/2 opacity-30'>
+                    <div className='w-5 h-8 rounded-full border border-gray-400 dark:border-gray-600 flex justify-center pt-1.5'>
+                        <div className='w-0.5 h-1.5 bg-gray-400 dark:bg-gray-600 rounded-full animate-scroll-dot' />
                     </div>
                 </div>
             </section>
 
+            {/* ── ABOUT ────────────────────────────────────────────── */}
             <section
-                className="w-full bg-gradient-to-b from-gray-50/40 via-purple-50/30 to-white/60 dark:from-gray-800/60 dark:via-gray-800/40 dark:to-gray-900/60"
-                id="studies">
-                <div className="max-w-6xl mx-auto px-6 py-20 md:py-28">
-                    <div className="space-y-8">
-                        <div className="space-y-4">
-                            <h2 className={`text-4xl md:text-5xl ${passionOne.className} font-bold text-gray-900 dark:text-white`}>
-                                {strings['home.section.2.title']}
-                            </h2>
-                            <div className="w-16 h-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-full"></div>
+                id='about'
+                className='w-full border-t border-gray-100 dark:border-gray-800/60 py-24 md:py-32'
+            >
+                <div className='max-w-6xl mx-auto px-6'>
+                    <div className='grid md:grid-cols-[220px_1fr] lg:grid-cols-[260px_1fr] gap-12 md:gap-20 items-start'>
+
+                        {/* Left — stats (hidden on mobile) */}
+                        <div className='hidden md:block space-y-10'>
+                            <p className={`text-xs tracking-[0.25em] uppercase text-gray-400 dark:text-gray-600 ${poppins.className}`}>
+                                {strings['home.about.eyebrow']}
+                            </p>
+                            {[
+                                { number: String(age), label: strings['home.about.stat.age.label'], sub: Profile.location },
+                                { number: String(Profile.startYear), label: '', sub: strings['home.about.stat.code.sub'] },
+                                { number: Profile.school, label: '', sub: strings['home.about.stat.school.sub'] },
+                            ].map((stat, i) => (
+                                <div key={i} className='border-l-2 border-gray-900 dark:border-white pl-5'>
+                                    <div className={`${passionOne.className} text-3xl font-black text-gray-900 dark:text-white leading-none`}>
+                                        {stat.number}{stat.label && <span className='text-lg ml-1 text-gray-400'>{stat.label}</span>}
+                                    </div>
+                                    <p className={`text-xs text-gray-400 dark:text-gray-500 mt-1 ${poppins.className}`}>{stat.sub}</p>
+                                </div>
+                            ))}
                         </div>
-                        
-                        <p className={`text-lg md:text-xl text-gray-700 dark:text-gray-300 leading-relaxed max-w-4xl ${poppins.className}`}>
-                            {strings['home.section.2.text']}
-                        </p>
-                        
-                        <Link 
-                            href="/experience#formation" 
-                            className="inline-flex items-center text-purple-600 hover:text-purple-700 dark:text-purple-400 dark:hover:text-purple-300 font-medium transition-colors group"
-                        >
-                            Voir mes études en détail
-                            <svg className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                            </svg>
-                        </Link>
+
+                        {/* Right — text */}
+                        <div className='space-y-8 md:pt-12'>
+                            <p className={`text-xl md:text-2xl text-gray-800 dark:text-gray-200 leading-relaxed font-light ${poppins.className}`}>
+                                {getLocaleStringAsArgs(strings['home.section.1.text'])[0]}{age}{getLocaleStringAsArgs(strings['home.section.1.text'])[2]}
+                            </p>
+
+                            <div className='w-12 h-px bg-gray-200 dark:bg-gray-700' />
+
+                            <p className={`text-base md:text-lg text-gray-500 dark:text-gray-400 leading-relaxed ${poppins.className}`}>
+                                {strings['home.section.2.text']}
+                            </p>
+
+                            <div className='flex flex-wrap gap-6 pt-2'>
+                                <Link
+                                    href='/experience'
+                                    className='inline-flex items-center gap-2 text-sm font-medium text-gray-900 dark:text-white hover:gap-3 transition-all duration-200'
+                                >
+                                    {strings['home.about.link.career']}
+                                    <span className='text-gray-400'>→</span>
+                                </Link>
+                                <Link
+                                    href='/experience#formation'
+                                    className='inline-flex items-center gap-2 text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300 hover:gap-3 transition-all duration-200'
+                                >
+                                    {strings['home.about.link.education']}
+                                    <span>→</span>
+                                </Link>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
-            <section className='w-full bg-gradient-to-b from-white/60 via-blue-50/20 to-gray-50/30 dark:from-gray-900/60 dark:via-gray-900/40 dark:to-gray-800/50'>
-                <div className="flex flex-col items-center max-w-6xl mx-auto px-6 py-16">
-                    <ExperiencePreview 
-                        title={strings['experience.preview.title']} 
-                        subtitle={strings['experience.preview.subtitle']} 
-                    />
+
+            {/* ── EXPERIENCES ──────────────────────────────────────── */}
+            <section className='w-full border-t border-gray-100 dark:border-gray-800/60 bg-gray-50/50 dark:bg-gray-900/30'>
+                <div className='flex flex-col items-center max-w-7xl mx-auto px-4 py-16'>
+                    <ExperiencePreview title={strings['experience.preview.title']} />
                 </div>
             </section>
-            <section className='w-full dark:bg-gradient-to-b dark:from-gray-800/50 dark:via-gray-900/40 dark:to-gray-800/50'>
-                <AchievementsPreview 
-                    title={strings['achievements.preview.title']} 
-                    subtitle={strings['achievements.preview.subtitle']} 
-                />
+
+            {/* ── ACHIEVEMENTS ─────────────────────────────────────── */}
+            <section className='w-full border-t border-gray-100 dark:border-gray-800/60'>
+                <AchievementsPreview title={strings['achievements.preview.title']} />
             </section>
-            
-            <section className="w-full py-16 bg-gradient-to-b from-gray-50/30 via-gray-100/20 to-white/40 dark:from-gray-800/50 dark:via-gray-900/40 dark:to-gray-900/60">
-                <div className="max-w-6xl mx-auto px-6">
-                    <div className="text-center mb-12">
-                        <h3 className="text-2xl md:text-3xl font-bold text-gray-800 dark:text-white mb-4">
-                            {strings['home.section.tech.title']}
-                        </h3>
-                        <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                            {strings['home.section.tech.text']}
-                        </p>
-                    </div>
+
+            {/* ── TECHNOLOGIES ─────────────────────────────────────── */}
+            <section className='w-full border-t border-gray-100 dark:border-gray-800/60 py-16'>
+                <div className='max-w-6xl mx-auto px-6'>
+                    <SectionHeader title={strings['home.section.tech.title']} eyebrow={strings['home.section.tech.eyebrow']} />
                     <Technologies />
                 </div>
             </section>
-            <EnhancedContact strings={strings} />
-            <Footer/>
+
+            {/* ── CONTACT ──────────────────────────────────────────── */}
+            <section className='w-full border-t border-gray-100 dark:border-gray-800/60'>
+                <EnhancedContact strings={strings} />
+            </section>
+
+            <Footer />
         </main>
     )
 }
