@@ -33,7 +33,7 @@ export default function Home() {
                     {/* Name */}
                     <h1 className={`${passionOne.className} font-black uppercase leading-none tracking-tight select-none`}>
                         <span className='block sm:inline text-[28vw] sm:text-[17vw] md:text-[14vw] lg:text-[12vw] text-gray-900 dark:text-white'>MAËL</span>
-                        <span className='hidden sm:inline'> </span>
+                        <span className='hidden sm:inline-block w-[2vw]' />
                         <span className='block sm:inline text-[28vw] sm:text-[17vw] md:text-[14vw] lg:text-[12vw] text-outlined'>FERI</span>
                     </h1>
 
