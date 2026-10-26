@@ -10,6 +10,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install Dockflow
-        run: curl -fsSL https://raw.githubusercontent.com/Shawiizz/dockflow/v4.0.0-alpha.4/install.sh | sh -s -- --version v4.0.0-alpha.4
+        run: curl -fsSL https://raw.githubusercontent.com/Shawiizz/dockflow/v4.0.0-alpha.5/install.sh | sh -s -- --version v4.0.0-alpha.5
       - name: Build
         run: dockflow build production
