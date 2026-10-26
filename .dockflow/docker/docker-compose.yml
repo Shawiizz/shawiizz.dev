@@ -1,9 +1,0 @@
-services:
-  app:
-    image: self-website
-    build:
-      context: ../..
-      dockerfile: Dockerfile.app
-    restart: always
-    ports:
-      - "{{ current.env.app_external_port }}:3000"

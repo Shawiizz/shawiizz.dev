@@ -1,15 +1,15 @@
-# .github/workflows/dockflow-build.yml
 name: Build
- 
+
 on:
   push:
     branches: ['*']
- 
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: npx @dockflow-tools/cli build
-        env:
-          DOCKFLOW_SECRETS: ${{ toJSON(secrets) }}
+      - name: Install Dockflow
+        run: curl -fsSL https://raw.githubusercontent.com/Shawiizz/dockflow/v4.0.0-alpha.4/install.sh | sh -s -- --version v4.0.0-alpha.4
+      - name: Build
+        run: dockflow build production

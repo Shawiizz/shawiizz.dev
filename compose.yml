@@ -1,0 +1,11 @@
+services:
+  app:
+    build: .
+    x-dockflow:
+      # the host's nginx terminates TLS and proxies these domains to the switch
+      routes:
+        - domains: [shawiizz.dev, www.shawiizz.dev, "${MAIN_DOMAIN}", "www.${MAIN_DOMAIN}"]
+          port: 3000
+      health:
+        http:
+          path: /

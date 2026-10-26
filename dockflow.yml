@@ -1,0 +1,17 @@
+version: 1
+app: shawiizz-dev
+
+# checked after the switch, through the host's nginx
+health:
+  endpoints:
+    - name: site
+      url: https://${MAIN_DOMAIN}/
+      expected_status: 200
+      timeout: 30s
+      retries: 3
+      retry_delay: 5s
+
+environments:
+  production:
+    vars:
+      MAIN_DOMAIN: maelferi.com
