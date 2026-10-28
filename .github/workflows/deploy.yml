@@ -1,22 +1,27 @@
 name: Deploy
 
-# A tag 1.2.3 deploys to production.
+# A pull request gets the plan of its change as a comment; a tag 1.2.3 deploys to production.
 on:
+  pull_request:
   push:
     tags: ['*']
 
 concurrency:
-  group: deploy
+  group: deploy-${{ github.event_name == 'push' && 'production' || github.ref }}
   cancel-in-progress: false
+
+permissions:
+  contents: read
+  pull-requests: write
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Install Dockflow
-        run: curl -fsSL https://raw.githubusercontent.com/Shawiizz/dockflow/v4.0.0-alpha.9/install.sh | sh -s -- --version v4.0.0-alpha.9
-      - name: Deploy
-        run: dockflow deploy --wait-lock 10m
+      - uses: Shawiizz/dockflow@v4.0.0-alpha.10
+        with:
+          env: production
+          command: ${{ github.event_name == 'push' && 'deploy --wait-lock 10m' || '' }}
         env:
           PRODUCTION_CONNECTION: ${{ secrets.PRODUCTION_CONNECTION }}
