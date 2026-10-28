@@ -5,7 +5,6 @@ app: shawiizz-dev
 plugins:
   - use: nginx
     with:
-      domain: [shawiizz.dev, www.shawiizz.dev, "${MAIN_DOMAIN}", "www.${MAIN_DOMAIN}"]
       template: deploy/nginx/shawiizz.dev.conf
       name: shawiizz.dev.conf
 
