@@ -1,6 +1,14 @@
 version: 1
 app: shawiizz-dev
 
+# the vhost of the host's nginx, from deploy/nginx/shawiizz.dev.conf: checked and reloaded when it changes
+plugins:
+  - use: nginx
+    with:
+      domain: [shawiizz.dev, www.shawiizz.dev, "${MAIN_DOMAIN}", "www.${MAIN_DOMAIN}"]
+      template: deploy/nginx/shawiizz.dev.conf
+      name: shawiizz.dev.conf
+
 # checked after the switch, through the host's nginx
 health:
   endpoints:
